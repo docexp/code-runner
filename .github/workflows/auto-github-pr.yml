@@ -23,8 +23,10 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: (JOB - auto-pull-request) STEP - auto-pull-request
-        uses: orchst/actions/jobs/auto-pull-request@v1.8.6
+      - uses: actions/checkout@v4
+
+      - uses: devops-infra/action-pull-request@v0.5.5
         with:
-          gh-pat: ${{ secrets.GH_PAT }}
-          base-branch: 'master'
+          github_token: ${{ secrets.GH_PAT }}
+          target_branch: main
+          get_diff: true
