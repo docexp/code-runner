@@ -1,0 +1,32 @@
+name: auto-pull-request
+
+on:
+  push:
+    branches:
+      - "feat/*"
+      - "fix/*"
+      - "docs/*"
+      - "style/*"
+      - "refactor/*"
+      - "perf/*"
+      - "test/*"
+      - "build/*"
+      - "ci/*"
+      - "chore/*"
+      - "revert/*"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          target_branch: main
+          get_diff: true

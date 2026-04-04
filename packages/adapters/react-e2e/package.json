@@ -9,7 +9,7 @@
       "e2e": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "bunx playwright test --config packages/react-e2e/playwright.config.ts"
+          "command": "bunx playwright test --config packages/adapters/react-e2e/playwright.config.ts"
         },
         "dependsOn": ["build-deps"]
       }

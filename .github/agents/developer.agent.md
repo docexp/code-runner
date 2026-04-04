@@ -13,13 +13,14 @@ Your responsibility is to **implement approved specs in small, verifiable chunks
 ## Project Context
 
 ```
-@code-runner/core    — shared types (RunResult, RunnerFn, Language, RUNNER_META)
-@code-runner/js      — JavaScript runner
-@code-runner/python  — Python/Pyodide runner
-@code-runner/go      — Go playground runner
-@code-runner/rust    — Rust playground runner
-@code-runner/java    — Java/Piston runner
-@code-runner/react   — React UI layer
+packages/core                → @code-runner/core    — shared types (RunResult, RunnerFn, Language, RUNNER_META)
+packages/runners/js          → @code-runner/js      — JavaScript runner
+packages/runners/python      → @code-runner/python  — Python/Pyodide runner
+packages/runners/go          → @code-runner/go      — Go playground runner
+packages/runners/rust        → @code-runner/rust    — Rust playground runner
+packages/runners/java        → @code-runner/java    — Java/Piston runner
+packages/adapters/react      → @code-runner/react   — React UI layer
+packages/adapters/react-e2e  → (private, e2e only)
 ```
 
 Monorepo: **Nx 22** + **Bun** workspaces. Node 22 via `.prototools`.
@@ -128,7 +129,7 @@ Follow this pattern for every new language runner:
 
 ```bash
 # 1. Generate the package
-bunx nx generate @nx/js:library packages/<lang> \
+bunx nx generate @nx/js:library packages/runners/<lang> \
   --name=<lang> --importPath=@code-runner/<lang> \
   --bundler=tsc --unitTestRunner=vitest --no-interactive
 
@@ -137,19 +138,19 @@ bun install
 ```
 
 Then:
-- Replace `packages/<lang>/src/lib/<lang>.ts` with the actual runner
+- Replace `packages/runners/<lang>/src/lib/<lang>.ts` with the actual runner
 - Replace the barrel export in `src/index.ts` with a named export
 - Add `"@code-runner/core": "workspace:*"` to `package.json` dependencies
-- Add `{ "path": "../core" }` to `tsconfig.lib.json` references
-- Write unit tests in `packages/<lang>/src/lib/<lang>.spec.ts` (mock `fetch` for API-backed runners; mock `window.loadPyodide` for WASM runners)
+- Add `{ "path": "../../core" }` to `tsconfig.lib.json` references (two levels up from `runners/<lang>`)
+- Write unit tests in `packages/runners/<lang>/src/lib/<lang>.spec.ts` (mock `fetch` for API-backed runners; mock `window.loadPyodide` for WASM runners)
 - Verify: `bunx nx run <lang>:build --output-style=stream` and `bunx nx run <lang>:test --output-style=stream`
 
 After adding a runner to `@code-runner/react`:
-- Add `"@code-runner/<lang>": "workspace:*"` to `packages/react/package.json`
-- Add a `{ "path": "../<lang>" }` reference in `packages/react/tsconfig.lib.json`
-- Create `packages/react/src/lib/<Lang>Runner.tsx` (use existing wrappers as pattern)
-- Export it from `packages/react/src/index.ts`
-- Add a Playwright test in `packages/react-e2e/` covering the new runner shell
+- Add `"@code-runner/<lang>": "workspace:*"` to `packages/adapters/react/package.json`
+- Add a `{ "path": "../../runners/<lang>/tsconfig.lib.json" }` reference in `packages/adapters/react/tsconfig.lib.json`
+- Create `packages/adapters/react/src/lib/<Lang>Runner.tsx` (use existing wrappers as pattern)
+- Export it from `packages/adapters/react/src/index.ts`
+- Add a Playwright test in `packages/adapters/react-e2e/` covering the new runner shell
 
 ## Chunking Rules
 
@@ -179,7 +180,7 @@ bunx nx run <package-name>:test --output-style=stream
 
 ### Playwright e2e tests
 
-- Live in `packages/react-e2e/` (separate Nx project targeting the React package or a demo app)
+- Live in `packages/adapters/react-e2e/` (separate Nx project targeting the React package or a demo app)
 - Cover: Run button triggers execution, output appears, Reset restores original code, error state renders stderr
 - One spec file per language runner
 - Never depend on real external APIs — use Playwright `page.route()` to intercept and mock API calls
@@ -209,9 +210,54 @@ bunx nx run react-e2e:e2e --output-style=stream
 - **Never** use `import React from 'react'` in `.tsx` files — React 17+ JSX transform is active
 - **Never** introduce `any` types — use `unknown` and narrow
 - **Never** omit `--output-style=stream` from Nx commands in this terminal environment
+- **Never** commit directly to `main` — always use a branch
 - **Always** create the chunk tracking file before writing code
 - **Always** declare cross-package deps in both `package.json` (`workspace:*`) and `tsconfig.lib.json` references
 - **Always** pass `--unitTestRunner=vitest` when generating new packages
+- **Always** create a branch before starting any chunk; commit after each chunk is verified
+
+## Git Workflow
+
+All work happens on short-lived branches. **Never push directly to `main`.**
+
+### Branch naming (Angular convention)
+
+```
+feat/<scope>-<short-description>    # new feature or package
+fix/<scope>-<short-description>     # bug fix
+chore/<scope>-<short-description>   # maintenance, config, tooling
+refactor/<scope>-<short-description># code restructure without behaviour change
+docs/<scope>-<short-description>    # documentation only
+test/<scope>-<short-description>    # tests only
+```
+
+Where `<scope>` is the spec ID or the package being touched, e.g. `feat/002-package-grouping`, `fix/js-runner-timeout`.
+
+### Commit message format (Angular conventional commits)
+
+```
+<type>(<scope>): <short summary>
+
+[optional body]
+[optional footer: refs spec NNN chunk III]
+```
+
+**Types:** `feat` | `fix` | `chore` | `refactor` | `docs` | `test` | `build` | `ci`
+
+**Examples:**
+```
+feat(002): move runners and adapters into grouped subdirectories
+fix(js): handle synchronous errors in runner-js
+chore(react): update tsconfig references after package move
+docs(readme): update project structure diagram
+```
+
+### Per-chunk commit flow
+
+1. Before starting a chunk: `git checkout -b <type>/<scope>-<description>`
+2. After the chunk passes build + tests: `git add -A && git commit -m "<type>(<scope>): <summary>"`
+3. Push the branch: `git push -u origin <type>/<scope>-<description>`
+4. One commit per chunk — squash only if two closely-related fixups belong together
 
 ## What You Build
 

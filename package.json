@@ -40,6 +40,8 @@
     "vitest": "~4.1.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/runners/*",
+    "packages/adapters/*"
   ]
 }
