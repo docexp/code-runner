@@ -1,17 +1,17 @@
-# @code-runner/rust
+# @cheetah-coder/rust
 
 Browser Rust runner that compiles and executes Rust code via the official [Rust Playground](https://play.rust-lang.org/) API — no local Rust installation required.
 
 ## Install
 
 ```sh
-npm install @code-runner/rust
+npm install @cheetah-coder/rust
 ```
 
 ## Quick start
 
 ```ts
-import { runRust } from '@code-runner/rust';
+import { runRust } from '@cheetah-coder/rust';
 
 const result = await runRust(`
 fn main() {

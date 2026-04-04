@@ -13,13 +13,13 @@ Your sole responsibility is to **think, design, and document** — never to writ
 ## Project Context
 
 ```
-packages/core                → @code-runner/core    — shared RunResult / RunnerFn / Language / RUNNER_META types
-packages/runners/js          → @code-runner/js      — JavaScript (native Function, offline)
-packages/runners/python      → @code-runner/python  — Python (Pyodide/WASM, CDN)
-packages/runners/go          → @code-runner/go      — Go (go.dev/play API)
-packages/runners/rust        → @code-runner/rust    — Rust (play.rust-lang.org API)
-packages/runners/java        → @code-runner/java    — Java (Piston/emkc.org API)
-packages/adapters/react      → @code-runner/react   — React UI (useRunner hook, RunnerShell, language wrappers)
+packages/core                → @cheetah-coder/core    — shared RunResult / RunnerFn / Language / RUNNER_META types
+packages/runners/js          → @cheetah-coder/js      — JavaScript (native Function, offline)
+packages/runners/python      → @cheetah-coder/python  — Python (Pyodide/WASM, CDN)
+packages/runners/go          → @cheetah-coder/go      — Go (go.dev/play API)
+packages/runners/rust        → @cheetah-coder/rust    — Rust (play.rust-lang.org API)
+packages/runners/java        → @cheetah-coder/java    — Java (Piston/emkc.org API)
+packages/adapters/react      → @cheetah-coder/react   — React UI (useRunner hook, RunnerShell, language wrappers)
 packages/adapters/react-e2e  → (private, e2e only)
 ```
 
@@ -82,7 +82,7 @@ updated: "YYYY-MM-DD"
 ### Non-Functional Requirements
 - NFR-001: Build must pass after every chunk
 - NFR-002: No `any` types introduced
-- NFR-003: New runner must implement `RunnerFn` from `@code-runner/core`
+- NFR-003: New runner must implement `RunnerFn` from `@cheetah-coder/core`
 
 ## Technical Design
 > Architecture decisions, data flow, API shapes, type contracts, Nx project graph impact.
@@ -113,7 +113,7 @@ updated: "YYYY-MM-DD"
 - **`RunnerFn` contract** — every runner must match `(code, onStatus?) => Promise<RunResult>`
 - **Offline-first where possible** — prefer Pyodide/WASM patterns over third-party APIs
 - **API-backed runners** degrade gracefully with a clear error and a playground link fallback
-- **No framework lock-in in core** — `@code-runner/core` and runner packages must be usable without React
+- **No framework lock-in in core** — `@cheetah-coder/core` and runner packages must be usable without React
 - **Publishable from day one** — every package has proper `exports`, `types`, and `package.json` metadata
 
 ## Documentation Design Principles
@@ -147,7 +147,7 @@ When specifying README content or any public-facing documentation, apply all of 
 Every package README must follow this exact structure (sections in this order, none omitted):
 
 1. **Badges line** — npm version · license · build status (one line, no prose)
-2. **`# @code-runner/{name}`** — h1 is the package name
+2. **`# @cheetah-coder/{name}`** — h1 is the package name
 3. **One-sentence lede** — what it does, for whom, in one sentence
 4. **Install** — `npm install` / `bun add` snippet
 5. **Quick start** — minimal working code example in a `ts` fenced block

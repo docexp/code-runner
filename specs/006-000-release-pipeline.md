@@ -3,7 +3,10 @@ id: "006"
 title: "Branch Strategy, Semantic Release & npm Publish"
 status: "approved"
 created: "2026-04-04"
-updated: "2026-04-04" this file must be moved to `specs/006-000-release-pipeline.md` as part of implementing spec 003-000.
+updated: "2026-04-04"
+---
+
+> **File rename required:** this file must be moved to `specs/006-000-release-pipeline.md` as part of implementing spec 003-000.
 
 # Branch Strategy, Semantic Release & npm Publish
 

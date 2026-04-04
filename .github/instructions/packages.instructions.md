@@ -11,7 +11,7 @@ You are editing a package inside an **Nx 22 monorepo** managed with **Bun** work
 - Always import from the package name, never by relative path across packages:
   ```ts
   // ✅ correct
-  import type { RunnerFn } from '@code-runner/core';
+  import type { RunnerFn } from '@cheetah-coder/core';
 
   // ❌ wrong — breaks when packages are published
   import type { RunnerFn } from '../../core/src/index.ts';
@@ -23,7 +23,7 @@ You are editing a package inside an **Nx 22 monorepo** managed with **Bun** work
 
 ### Runner contract
 
-Every runner function must satisfy `RunnerFn` from `@code-runner/core`:
+Every runner function must satisfy `RunnerFn` from `@cheetah-coder/core`:
 
 ```ts
 export type RunnerFn = (

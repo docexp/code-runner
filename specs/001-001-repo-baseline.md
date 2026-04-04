@@ -37,21 +37,21 @@ Deferred: agent/instruction file updates, Vitest, Playwright, READMEs.
 | `packages/go/` | Moved from `packages/runner-go/` |
 | `packages/rust/` | Moved from `packages/runner-rust/` |
 | `packages/java/` | Moved from `packages/runner-java/` |
-| `packages/js/package.json` | name → `@code-runner/js`; nx.name → `js`; removed `private` |
-| `packages/python/package.json` | name → `@code-runner/python`; nx.name → `python`; removed `private` |
-| `packages/go/package.json` | name → `@code-runner/go`; nx.name → `go`; removed `private` |
-| `packages/rust/package.json` | name → `@code-runner/rust`; nx.name → `rust`; removed `private` |
-| `packages/java/package.json` | name → `@code-runner/java`; nx.name → `java`; removed `private` |
+| `packages/js/package.json` | name → `@cheetah-coder/js`; nx.name → `js`; removed `private` |
+| `packages/python/package.json` | name → `@cheetah-coder/python`; nx.name → `python`; removed `private` |
+| `packages/go/package.json` | name → `@cheetah-coder/go`; nx.name → `go`; removed `private` |
+| `packages/rust/package.json` | name → `@cheetah-coder/rust`; nx.name → `rust`; removed `private` |
+| `packages/java/package.json` | name → `@cheetah-coder/java`; nx.name → `java`; removed `private` |
 | `packages/core/package.json` | removed `private` |
-| `packages/react/package.json` | dependencies renamed to `@code-runner/{lang}` |
+| `packages/react/package.json` | dependencies renamed to `@cheetah-coder/{lang}` |
 | `package.json` | name → `code-runner` |
 | `tsconfig.json` | references updated to new folder paths |
 | `packages/react/tsconfig.lib.json` | references updated to new folder paths |
-| `packages/react/src/lib/JsRunner.tsx` | import `@code-runner/js` |
-| `packages/react/src/lib/PythonRunner.tsx` | import `@code-runner/python` |
-| `packages/react/src/lib/GoRunner.tsx` | import `@code-runner/go` |
-| `packages/react/src/lib/RustRunner.tsx` | import `@code-runner/rust` |
-| `packages/react/src/lib/JavaRunner.tsx` | import `@code-runner/java` |
+| `packages/react/src/lib/JsRunner.tsx` | import `@cheetah-coder/js` |
+| `packages/react/src/lib/PythonRunner.tsx` | import `@cheetah-coder/python` |
+| `packages/react/src/lib/GoRunner.tsx` | import `@cheetah-coder/go` |
+| `packages/react/src/lib/RustRunner.tsx` | import `@cheetah-coder/rust` |
+| `packages/react/src/lib/JavaRunner.tsx` | import `@cheetah-coder/java` |
 | `packages/react/src/lib/react.tsx` | Deleted |
 | `packages/react/src/lib/react.module.css` | Deleted |
 

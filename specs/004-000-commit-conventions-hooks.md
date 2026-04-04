@@ -3,7 +3,10 @@ id: "004"
 title: "Commit Conventions & Git Hooks"
 status: "approved"
 created: "2026-04-04"
-updated: "2026-04-04" & Git Hooks
+updated: "2026-04-04"
+---
+
+# Commit Conventions & Git Hooks
 
 ## Context & Goals
 

@@ -1,11 +1,11 @@
-# @code-runner/react
+# @cheetah-coder/react
 
 React UI layer for `code-runner` — provides a `useRunner` hook, a `RunnerShell` component, per-language wrapper components, and a unified `CodeRunner` component for running JavaScript, Python, Go, Rust, and Java in the browser.
 
 ## Install
 
 ```sh
-npm install @code-runner/react
+npm install @cheetah-coder/react
 ```
 
 React 18 or 19 is required as a peer dependency.
@@ -13,7 +13,7 @@ React 18 or 19 is required as a peer dependency.
 ## Quick start
 
 ```tsx
-import { CodeRunner } from '@code-runner/react';
+import { CodeRunner } from '@cheetah-coder/react';
 
 export function Demo() {
   return (
@@ -28,7 +28,7 @@ export function Demo() {
 Language-specific components are also exported for direct use:
 
 ```tsx
-import { JsRunner, PythonRunner, GoRunner, RustRunner, JavaRunner } from '@code-runner/react';
+import { JsRunner, PythonRunner, GoRunner, RustRunner, JavaRunner } from '@cheetah-coder/react';
 ```
 
 ## API

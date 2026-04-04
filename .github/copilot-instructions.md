@@ -8,13 +8,13 @@
 
 | Package | Import path | Purpose |
 |---|---|---|
-| `packages/core` | `@code-runner/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
-| `packages/runners/js` | `@code-runner/js` | JavaScript runner (native `Function()`, offline) |
-| `packages/runners/python` | `@code-runner/python` | Python runner (Pyodide/WASM, CDN lazy-load) |
-| `packages/runners/go` | `@code-runner/go` | Go runner (go.dev/play API) |
-| `packages/runners/rust` | `@code-runner/rust` | Rust runner (play.rust-lang.org API) |
-| `packages/runners/java` | `@code-runner/java` | Java runner (Piston/emkc.org API) |
-| `packages/adapters/react` | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
+| `packages/core` | `@cheetah-coder/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
+| `packages/runners/js` | `@cheetah-coder/js` | JavaScript runner (native `Function()`, offline) |
+| `packages/runners/python` | `@cheetah-coder/python` | Python runner (Pyodide/WASM, CDN lazy-load) |
+| `packages/runners/go` | `@cheetah-coder/go` | Go runner (go.dev/play API) |
+| `packages/runners/rust` | `@cheetah-coder/rust` | Rust runner (play.rust-lang.org API) |
+| `packages/runners/java` | `@cheetah-coder/java` | Java runner (Piston/emkc.org API) |
+| `packages/adapters/react` | `@cheetah-coder/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
 
 ## Agent Roles
 
@@ -74,7 +74,7 @@ Node 22 (set via `.prototools`). Do not change the Node version.
 - TypeScript strict mode everywhere
 - No `any` types — use `unknown` and narrow explicitly
 - React JSX transform (`react-jsx`) — no `import React` needed in `.tsx` files
-- All runner functions implement `RunnerFn` from `@code-runner/core`
+- All runner functions implement `RunnerFn` from `@cheetah-coder/core`
 - `lib` in `tsconfig.base.json` includes `es2022`, `dom`, `dom.iterable` (runners target the browser)
 
 ## Project Structure
@@ -89,13 +89,13 @@ specs/
   NNN-000-*.md           # Architect spec documents
   NNN-III-*.md           # Developer chunk tracking files
 packages/
-  core/                  # @code-runner/core
+  core/                  # @cheetah-coder/core
   runners/
-    js/                  # @code-runner/js
-    python/              # @code-runner/python
-    go/                  # @code-runner/go
-    rust/                # @code-runner/rust
-    java/                # @code-runner/java
+    js/                  # @cheetah-coder/js
+    python/              # @cheetah-coder/python
+    go/                  # @cheetah-coder/go
+    rust/                # @cheetah-coder/rust
+    java/                # @cheetah-coder/java
   adapters/
-    react/               # @code-runner/react
+    react/               # @cheetah-coder/react
 ```

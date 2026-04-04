@@ -1,5 +1,5 @@
-import { RUNNER_META } from '@code-runner/core';
-import { runGo } from '@code-runner/go';
+import { RUNNER_META } from '@cheetah-coder/core';
+import { runGo } from '@cheetah-coder/go';
 import { RunnerShell } from './RunnerShell.js';
 import type { RunnerShellProps } from './RunnerShell.js';
 

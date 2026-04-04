@@ -2,7 +2,7 @@
  * Go runner — submits code to the official go.dev/play/compile sandbox API.
  * Requires an internet connection.
  */
-import type { RunnerFn } from '@code-runner/core';
+import type { RunnerFn } from '@cheetah-coder/core';
 
 interface GoCompileResponse {
   Errors?: string;

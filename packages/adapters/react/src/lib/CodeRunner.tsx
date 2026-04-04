@@ -1,4 +1,4 @@
-import type { Language } from '@code-runner/core';
+import type { Language } from '@cheetah-coder/core';
 import type { RunnerShellProps } from './RunnerShell.js';
 import { JsRunner } from './JsRunner.js';
 import { PythonRunner } from './PythonRunner.js';

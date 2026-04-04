@@ -6,22 +6,22 @@ A collection of independently-publishable TypeScript packages that run code in t
 
 | Package | Import path | Description |
 |---|---|---|
-| [`packages/core`](packages/core) | `@code-runner/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
-| [`packages/js`](packages/js) | `@code-runner/js` | JavaScript runner — executes code offline via `Function()` |
-| [`packages/python`](packages/python) | `@code-runner/python` | Python runner — CPython 3 via Pyodide WebAssembly |
-| [`packages/go`](packages/go) | `@code-runner/go` | Go runner — go.dev playground API |
-| [`packages/rust`](packages/rust) | `@code-runner/rust` | Rust runner — play.rust-lang.org API |
-| [`packages/java`](packages/java) | `@code-runner/java` | Java runner — Piston (emkc.org) API |
-| [`packages/react`](packages/react) | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
+| [`packages/core`](packages/core) | `@cheetah-coder/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
+| [`packages/js`](packages/js) | `@cheetah-coder/js` | JavaScript runner — executes code offline via `Function()` |
+| [`packages/python`](packages/python) | `@cheetah-coder/python` | Python runner — CPython 3 via Pyodide WebAssembly |
+| [`packages/go`](packages/go) | `@cheetah-coder/go` | Go runner — go.dev playground API |
+| [`packages/rust`](packages/rust) | `@cheetah-coder/rust` | Rust runner — play.rust-lang.org API |
+| [`packages/java`](packages/java) | `@cheetah-coder/java` | Java runner — Piston (emkc.org) API |
+| [`packages/react`](packages/react) | `@cheetah-coder/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
 
 ## Getting started
 
 ```sh
-npm install @code-runner/react
+npm install @cheetah-coder/react
 ```
 
 ```tsx
-import { CodeRunner } from '@code-runner/react';
+import { CodeRunner } from '@cheetah-coder/react';
 
 export function Demo() {
   return (

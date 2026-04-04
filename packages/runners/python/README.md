@@ -1,17 +1,17 @@
-# @code-runner/python
+# @cheetah-coder/python
 
 Browser Python runner that executes CPython 3 code via [Pyodide](https://pyodide.org) WebAssembly — full CPython in the browser, no server required.
 
 ## Install
 
 ```sh
-npm install @code-runner/python
+npm install @cheetah-coder/python
 ```
 
 ## Quick start
 
 ```ts
-import { runPython } from '@code-runner/python';
+import { runPython } from '@cheetah-coder/python';
 
 const result = await runPython(
   `print('hello from Python')`,

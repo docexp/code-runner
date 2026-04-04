@@ -7,7 +7,7 @@
  * - Supports top-level await (wraps code in async IIFE)
  * - Returns the final expression value if nothing was logged
  */
-import type { RunnerFn } from '@code-runner/core';
+import type { RunnerFn } from '@cheetah-coder/core';
 
 function formatArgs(...args: unknown[]): string {
   return args

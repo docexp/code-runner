@@ -3,7 +3,7 @@
  * play.rust-lang.org. Uses stable channel, edition 2021.
  * Requires an internet connection.
  */
-import type { RunnerFn } from '@code-runner/core';
+import type { RunnerFn } from '@cheetah-coder/core';
 
 interface RustExecuteResponse {
   success: boolean;

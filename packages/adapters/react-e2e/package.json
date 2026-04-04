@@ -1,5 +1,5 @@
 {
-  "name": "@code-runner/react-e2e",
+  "name": "@cheetah-coder/react-e2e",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@code-runner/react": "workspace:*",
+    "@cheetah-coder/react": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

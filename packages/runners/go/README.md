@@ -1,17 +1,17 @@
-# @code-runner/go
+# @cheetah-coder/go
 
 Browser Go runner that compiles and executes Go code via the official [go.dev playground](https://go.dev/play/) API — no local Go installation required.
 
 ## Install
 
 ```sh
-npm install @code-runner/go
+npm install @cheetah-coder/go
 ```
 
 ## Quick start
 
 ```ts
-import { runGo } from '@code-runner/go';
+import { runGo } from '@cheetah-coder/go';
 
 const result = await runGo(`
 package main
