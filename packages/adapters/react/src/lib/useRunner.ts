@@ -2,7 +2,7 @@
  * useRunner — React hook for managing runner execution state.
  */
 import { useState, useCallback } from 'react';
-import type { RunResult } from '@code-runner/core';
+import type { RunResult } from '@cheetah-coder/core';
 
 export type RunState = 'idle' | 'loading' | 'ok' | 'error';
 

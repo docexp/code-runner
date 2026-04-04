@@ -1,4 +1,4 @@
-import { JsRunner, PythonRunner, GoRunner, RustRunner, JavaRunner } from '@code-runner/react';
+import { JsRunner, PythonRunner, GoRunner, RustRunner, JavaRunner } from '@cheetah-coder/react';
 
 const JS_CODE = `console.log('Hello from JavaScript!');`;
 

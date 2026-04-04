@@ -1,17 +1,17 @@
-# @code-runner/js
+# @cheetah-coder/js
 
 Browser JavaScript runner that executes code offline using the native `Function()` constructor — no network required.
 
 ## Install
 
 ```sh
-npm install @code-runner/js
+npm install @cheetah-coder/js
 ```
 
 ## Quick start
 
 ```ts
-import { runJavaScript } from '@code-runner/js';
+import { runJavaScript } from '@cheetah-coder/js';
 
 const result = await runJavaScript(`console.log('hello world')`);
 console.log(result.stdout); // 'hello world'

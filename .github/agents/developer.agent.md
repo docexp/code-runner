@@ -13,13 +13,13 @@ Your responsibility is to **implement approved specs in small, verifiable chunks
 ## Project Context
 
 ```
-packages/core                → @code-runner/core    — shared types (RunResult, RunnerFn, Language, RUNNER_META)
-packages/runners/js          → @code-runner/js      — JavaScript runner
-packages/runners/python      → @code-runner/python  — Python/Pyodide runner
-packages/runners/go          → @code-runner/go      — Go playground runner
-packages/runners/rust        → @code-runner/rust    — Rust playground runner
-packages/runners/java        → @code-runner/java    — Java/Piston runner
-packages/adapters/react      → @code-runner/react   — React UI layer
+packages/core                → @cheetah-coder/core    — shared types (RunResult, RunnerFn, Language, RUNNER_META)
+packages/runners/js          → @cheetah-coder/js      — JavaScript runner
+packages/runners/python      → @cheetah-coder/python  — Python/Pyodide runner
+packages/runners/go          → @cheetah-coder/go      — Go playground runner
+packages/runners/rust        → @cheetah-coder/rust    — Rust playground runner
+packages/runners/java        → @cheetah-coder/java    — Java/Piston runner
+packages/adapters/react      → @cheetah-coder/react   — React UI layer
 packages/adapters/react-e2e  → (private, e2e only)
 ```
 
@@ -48,12 +48,12 @@ bunx nx run react-e2e:e2e --output-style=stream
 
 # Generate a new JS library package
 bunx nx generate @nx/js:library packages/<name> \
-  --name=<name> --importPath=@code-runner/<name> \
+  --name=<name> --importPath=@cheetah-coder/<name> \
   --bundler=tsc --unitTestRunner=vitest --no-interactive
 
 # Generate a new React library package
 bunx nx generate @nx/react:library packages/<name> \
-  --name=<name> --importPath=@code-runner/<name> \
+  --name=<name> --importPath=@cheetah-coder/<name> \
   --bundler=vite --unitTestRunner=vitest --no-interactive
 
 # Install workspace deps after touching package.json files
@@ -103,7 +103,7 @@ status: "in-progress" | "done" | "blocked"
 | File | Change |
 |---|---|
 | `packages/runner-foo/src/lib/runner-foo.ts` | Created |
-| `packages/runner-foo/package.json` | Added `@code-runner/core` dep |
+| `packages/runner-foo/package.json` | Added `@cheetah-coder/core` dep |
 
 ## Post-Implementation Checklist
 - [ ] `bunx nx run-many -t build --output-style=stream` passes
@@ -130,7 +130,7 @@ Follow this pattern for every new language runner:
 ```bash
 # 1. Generate the package
 bunx nx generate @nx/js:library packages/runners/<lang> \
-  --name=<lang> --importPath=@code-runner/<lang> \
+  --name=<lang> --importPath=@cheetah-coder/<lang> \
   --bundler=tsc --unitTestRunner=vitest --no-interactive
 
 # 2. Install workspace deps
@@ -140,13 +140,13 @@ bun install
 Then:
 - Replace `packages/runners/<lang>/src/lib/<lang>.ts` with the actual runner
 - Replace the barrel export in `src/index.ts` with a named export
-- Add `"@code-runner/core": "workspace:*"` to `package.json` dependencies
+- Add `"@cheetah-coder/core": "workspace:*"` to `package.json` dependencies
 - Add `{ "path": "../../core" }` to `tsconfig.lib.json` references (two levels up from `runners/<lang>`)
 - Write unit tests in `packages/runners/<lang>/src/lib/<lang>.spec.ts` (mock `fetch` for API-backed runners; mock `window.loadPyodide` for WASM runners)
 - Verify: `bunx nx run <lang>:build --output-style=stream` and `bunx nx run <lang>:test --output-style=stream`
 
-After adding a runner to `@code-runner/react`:
-- Add `"@code-runner/<lang>": "workspace:*"` to `packages/adapters/react/package.json`
+After adding a runner to `@cheetah-coder/react`:
+- Add `"@cheetah-coder/<lang>": "workspace:*"` to `packages/adapters/react/package.json`
 - Add a `{ "path": "../../runners/<lang>/tsconfig.lib.json" }` reference in `packages/adapters/react/tsconfig.lib.json`
 - Create `packages/adapters/react/src/lib/<Lang>Runner.tsx` (use existing wrappers as pattern)
 - Export it from `packages/adapters/react/src/index.ts`
@@ -168,7 +168,7 @@ Every package must have tests. Tests are not optional.
 - Test files live at `packages/<name>/src/lib/<name>.spec.ts` (or `.spec.tsx` for React)
 - Runner packages: mock `fetch` (API-backed) or `window.loadPyodide` / `injectScript` (WASM) — never make real network calls in tests
 - React package: use `@testing-library/react` to test `useRunner` hook and render `RunnerShell`
-- `@code-runner/core`: test that `RUNNER_META` entries have correct shape
+- `@cheetah-coder/core`: test that `RUNNER_META` entries have correct shape
 
 ```bash
 # Run all unit tests
@@ -261,4 +261,4 @@ docs(readme): update project structure diagram
 
 ## What You Build
 
-This is a **TypeScript Nx monorepo** of browser-executable code runner packages. The target environment is always the browser (DOM APIs are available). Runners must implement `RunnerFn` from `@code-runner/core`. The React layer wraps runners in `RunnerShell` using the `useRunner` hook.
+This is a **TypeScript Nx monorepo** of browser-executable code runner packages. The target environment is always the browser (DOM APIs are available). Runners must implement `RunnerFn` from `@cheetah-coder/core`. The React layer wraps runners in `RunnerShell` using the `useRunner` hook.

@@ -1,5 +1,5 @@
-import { RUNNER_META } from '@code-runner/core';
-import { runRust } from '@code-runner/rust';
+import { RUNNER_META } from '@cheetah-coder/core';
+import { runRust } from '@cheetah-coder/rust';
 import { RunnerShell } from './RunnerShell.js';
 import type { RunnerShellProps } from './RunnerShell.js';
 

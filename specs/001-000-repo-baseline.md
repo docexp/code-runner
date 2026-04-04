@@ -38,11 +38,11 @@ No new packages are created. Five existing packages are renamed. One package has
 
 | Old folder | New folder | Old npm name | New npm name | Old `nx.name` | New `nx.name` |
 |---|---|---|---|---|---|
-| `packages/runner-js` | `packages/js` | `@code-runner/runner-js` | `@code-runner/js` | `runner-js` | `js` |
-| `packages/runner-python` | `packages/python` | `@code-runner/runner-python` | `@code-runner/python` | `runner-python` | `python` |
-| `packages/runner-go` | `packages/go` | `@code-runner/runner-go` | `@code-runner/go` | `runner-go` | `go` |
-| `packages/runner-rust` | `packages/rust` | `@code-runner/runner-rust` | `@code-runner/rust` | `runner-rust` | `rust` |
-| `packages/runner-java` | `packages/java` | `@code-runner/runner-java` | `@code-runner/java` | `runner-java` | `java` |
+| `packages/runner-js` | `packages/js` | `@cheetah-coder/runner-js` | `@cheetah-coder/js` | `runner-js` | `js` |
+| `packages/runner-python` | `packages/python` | `@cheetah-coder/runner-python` | `@cheetah-coder/python` | `runner-python` | `python` |
+| `packages/runner-go` | `packages/go` | `@cheetah-coder/runner-go` | `@cheetah-coder/go` | `runner-go` | `go` |
+| `packages/runner-rust` | `packages/rust` | `@cheetah-coder/runner-rust` | `@cheetah-coder/rust` | `runner-rust` | `rust` |
+| `packages/runner-java` | `packages/java` | `@cheetah-coder/runner-java` | `@cheetah-coder/java` | `runner-java` | `java` |
 
 ### React package clean-up (no rename)
 
@@ -51,24 +51,24 @@ No new packages are created. Five existing packages are renamed. One package has
 
 ### Root `package.json`
 
-- `"name"` field: change from `"@code-runner/source"` to `"code-runner"`. The current name collides with the custom export condition `@code-runner/source` used in individual package `exports` maps, which is confusing and incorrect for a private monorepo root.
+- `"name"` field: change from `"@cheetah-coder/source"` to `"code-runner"`. The current name collides with the custom export condition `@cheetah-coder/source` used in individual package `exports` maps, which is confusing and incorrect for a private monorepo root.
 
 ### `private` flag removal
 
-This is a public, publishable project. Every runner package and `@code-runner/core` currently carry `"private": true`, which prevents npm publishing. That flag must be removed from all packages. `@code-runner/react` is already missing the flag and requires no change on this point.
+This is a public, publishable project. Every runner package and `@cheetah-coder/core` currently carry `"private": true`, which prevents npm publishing. That flag must be removed from all packages. `@cheetah-coder/react` is already missing the flag and requires no change on this point.
 
 ## Requirements
 
 ### Functional Requirements
 
 - FR-001: After this spec is implemented, `bunx nx run-many -t build --output-style=stream` must succeed for all packages.
-- FR-002: Every source file import of `@code-runner/runner-{lang}` must become `@code-runner/{lang}`.
-- FR-003: Every `package.json` dependency entry of `@code-runner/runner-{lang}` must become `@code-runner/{lang}`.
+- FR-002: Every source file import of `@cheetah-coder/runner-{lang}` must become `@cheetah-coder/{lang}`.
+- FR-003: Every `package.json` dependency entry of `@cheetah-coder/runner-{lang}` must become `@cheetah-coder/{lang}`.
 - FR-004: Every TypeScript project reference that points to a `runner-{lang}` folder path must be updated.
 - FR-005: The root `tsconfig.json` `references` array must point to the new folder paths.
 - FR-006: The root `package.json` `name` must be `"code-runner"`.
 - FR-007: `react.tsx` and `react.module.css` must be deleted.
-- FR-008: `"private": true` must be removed from `@code-runner/core` and all five runner package `package.json` files. The root `package.json` must retain (or gain) `"private": true` since workspace roots must never be published directly.
+- FR-008: `"private": true` must be removed from `@cheetah-coder/core` and all five runner package `package.json` files. The root `package.json` must retain (or gain) `"private": true` since workspace roots must never be published directly.
 - FR-009: All agent files, Copilot instruction files, and the workspace packages instruction file must use updated package names and folder paths throughout.
 - FR-010: Every package README and the root `README.md` must be replaced with meaningful content that follows the canonical documentation template from the Architect agent's Documentation Design Principles: badges line, h1, one-sentence lede, install, quick start, API table, notes (where non-obvious), license. All documentation must be minimalist, SEO-optimised, and LLM-readable per those principles.
 
@@ -95,21 +95,21 @@ Below is the exhaustive list of locations that contain old names:
 
 | File | What changes |
 |---|---|
-| `packages/react/src/lib/JsRunner.tsx` | Import `from '@code-runner/runner-js'` → `'@code-runner/js'` |
-| `packages/react/src/lib/PythonRunner.tsx` | Import `from '@code-runner/runner-python'` → `'@code-runner/python'` |
-| `packages/react/src/lib/GoRunner.tsx` | Import `from '@code-runner/runner-go'` → `'@code-runner/go'` |
-| `packages/react/src/lib/RustRunner.tsx` | Import `from '@code-runner/runner-rust'` → `'@code-runner/rust'` |
-| `packages/react/src/lib/JavaRunner.tsx` | Import `from '@code-runner/runner-java'` → `'@code-runner/java'` |
+| `packages/react/src/lib/JsRunner.tsx` | Import `from '@cheetah-coder/runner-js'` → `'@cheetah-coder/js'` |
+| `packages/react/src/lib/PythonRunner.tsx` | Import `from '@cheetah-coder/runner-python'` → `'@cheetah-coder/python'` |
+| `packages/react/src/lib/GoRunner.tsx` | Import `from '@cheetah-coder/runner-go'` → `'@cheetah-coder/go'` |
+| `packages/react/src/lib/RustRunner.tsx` | Import `from '@cheetah-coder/runner-rust'` → `'@cheetah-coder/rust'` |
+| `packages/react/src/lib/JavaRunner.tsx` | Import `from '@cheetah-coder/runner-java'` → `'@cheetah-coder/java'` |
 
 #### `package.json` files
 
 | File | What changes |
 |---|---|
-| `packages/js/package.json` | `"name"` → `@code-runner/js`; `"nx.name"` → `js`; remove `"private": true` |
-| `packages/python/package.json` | `"name"` → `@code-runner/python`; `"nx.name"` → `python`; remove `"private": true` |
-| `packages/go/package.json` | `"name"` → `@code-runner/go`; `"nx.name"` → `go`; remove `"private": true` |
-| `packages/rust/package.json` | `"name"` → `@code-runner/rust`; `"nx.name"` → `rust`; remove `"private": true` |
-| `packages/java/package.json` | `"name"` → `@code-runner/java`; `"nx.name"` → `java`; remove `"private": true` |
+| `packages/js/package.json` | `"name"` → `@cheetah-coder/js`; `"nx.name"` → `js`; remove `"private": true` |
+| `packages/python/package.json` | `"name"` → `@cheetah-coder/python`; `"nx.name"` → `python`; remove `"private": true` |
+| `packages/go/package.json` | `"name"` → `@cheetah-coder/go`; `"nx.name"` → `go`; remove `"private": true` |
+| `packages/rust/package.json` | `"name"` → `@cheetah-coder/rust`; `"nx.name"` → `rust`; remove `"private": true` |
+| `packages/java/package.json` | `"name"` → `@cheetah-coder/java`; `"nx.name"` → `java`; remove `"private": true` |
 | `packages/react/package.json` | Dependencies renamed |
 | `packages/core/package.json` | Remove `"private": true` |
 | `package.json` (root) | `"name"` → `code-runner`; add `"private": true` (root workspace must stay private) |
@@ -130,13 +130,13 @@ Below is the exhaustive list of locations that contain old names:
 
 | File | What changes |
 |---|---|
-| `.github/copilot-instructions.md` | Package Map table: folder column `packages/runner-{lang}` → `packages/{lang}`; import path column `@code-runner/runner-{lang}` → `@code-runner/{lang}`. All prose references updated. |
-| `.github/agents/architect.agent.md` | Project Context block: `@code-runner/runner-{lang}` → `@code-runner/{lang}` |
-| `.github/agents/developer.agent.md` | Project Context block + Build Commands block: `@code-runner/runner-{lang}` → `@code-runner/{lang}`; folder path examples updated |
+| `.github/copilot-instructions.md` | Package Map table: folder column `packages/runner-{lang}` → `packages/{lang}`; import path column `@cheetah-coder/runner-{lang}` → `@cheetah-coder/{lang}`. All prose references updated. |
+| `.github/agents/architect.agent.md` | Project Context block: `@cheetah-coder/runner-{lang}` → `@cheetah-coder/{lang}` |
+| `.github/agents/developer.agent.md` | Project Context block + Build Commands block: `@cheetah-coder/runner-{lang}` → `@cheetah-coder/{lang}`; folder path examples updated |
 
 ### Custom export condition
 
-The custom export condition key `"@code-runner/source"` in each package's `exports` map is intentional — it allows TypeScript to resolve source `.ts` files during monorepo development (via `customConditions` in `tsconfig.base.json`). This must be preserved on all packages unchanged.
+The custom export condition key `"@cheetah-coder/source"` in each package's `exports` map is intentional — it allows TypeScript to resolve source `.ts` files during monorepo development (via `customConditions` in `tsconfig.base.json`). This must be preserved on all packages unchanged.
 
 ### Testing
 
@@ -171,7 +171,7 @@ All Playwright tests must use `page.route()` to mock external APIs — no real n
 
 - No new Nx generators are needed for the rename itself.
 - A new `react-e2e` Playwright project must be scaffolded. Use `bunx nx generate @nx/playwright:configuration --project=react-e2e --no-interactive` if the plugin is available; otherwise scaffold manually: `packages/react-e2e/package.json`, `playwright.config.ts`, and test files.
-- Runner packages (`@code-runner/js` etc.) were generated with `--unitTestRunner=none`. Vitest must be added manually: add `vitest` config to each `tsconfig.lib.json` or add a `vite.config.ts` with Vitest settings, and register a `test` target in each package's `package.json` or let Nx infer it.
+- Runner packages (`@cheetah-coder/js` etc.) were generated with `--unitTestRunner=none`. Vitest must be added manually: add `vitest` config to each `tsconfig.lib.json` or add a `vite.config.ts` with Vitest settings, and register a `test` target in each package's `package.json` or let Nx infer it.
 - `sync.applyChanges: true` in `nx.json` means TypeScript project references will be auto-synced on the next build invocation, but the Developer must still manually update `tsconfig.json` root references and `packages/react/tsconfig.lib.json` references because those changes need to be committed.
 - After moving folders, run `bun install` once to re-link Bun workspace symlinks.
 - `nx.json` itself does not reference package names or folder paths — no changes needed there.

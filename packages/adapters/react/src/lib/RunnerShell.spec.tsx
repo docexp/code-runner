@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import type { RunResult } from '@code-runner/core';
+import type { RunResult } from '@cheetah-coder/core';
 import { RunnerShell } from './RunnerShell.js';
 
 function makeRunner(result: RunResult) {

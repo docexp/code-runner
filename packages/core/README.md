@@ -1,18 +1,18 @@
-# @code-runner/core
+# @cheetah-coder/core
 
 Shared TypeScript types for the `code-runner` browser code execution library.
 
 ## Install
 
 ```sh
-npm install @code-runner/core
+npm install @cheetah-coder/core
 ```
 
 ## Quick start
 
 ```ts
-import type { RunnerFn, RunResult, Language } from '@code-runner/core';
-import { RUNNER_META } from '@code-runner/core';
+import type { RunnerFn, RunResult, Language } from '@cheetah-coder/core';
+import { RUNNER_META } from '@cheetah-coder/core';
 
 console.log(RUNNER_META.javascript.label); // 'JavaScript'
 console.log(RUNNER_META.go.playgroundUrl); // 'https://go.dev/play/'

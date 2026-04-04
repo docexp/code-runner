@@ -3,7 +3,10 @@ id: "003"
 title: "npm Scope Rename: @code-runner → @cheetah-coder"
 status: "approved"
 created: "2026-04-04"
-updated: "2026-04-04": @code-runner → @cheetah-coder
+updated: "2026-04-04"
+---
+
+# npm Scope Rename: @code-runner → @cheetah-coder
 
 ## Context & Goals
 
@@ -15,10 +18,10 @@ The GitHub repository name (`code-runner`) and GitHub organization (`docexp`) ar
 
 **In scope:**
 - `name` field in every `package.json` (seven publishable packages + `react-e2e` private package)
-- `dependencies` entries using `@code-runner/*` in every `package.json`
-- The custom export condition `@code-runner/source` in every package's `exports` map → `@cheetah-coder/source`
+- `dependencies` entries using `@cheetah-coder/*` in every `package.json`
+- The custom export condition `@cheetah-coder/source` in every package's `exports` map → `@cheetah-coder/source`
 - `customConditions` in `tsconfig.base.json` → `@cheetah-coder/source`
-- All TypeScript source file imports: `from '@code-runner/...'` → `from '@cheetah-coder/...'`
+- All TypeScript source file imports: `from '@cheetah-coder/...'` → `from '@cheetah-coder/...'`
 - All README files
 - `.github/copilot-instructions.md`
 - `.github/instructions/packages.instructions.md`
@@ -40,14 +43,14 @@ No new packages created. No packages deleted. Only names and references change.
 
 | Current `name` | New `name` |
 |---|---|
-| `@code-runner/core` | `@cheetah-coder/core` |
-| `@code-runner/js` | `@cheetah-coder/js` |
-| `@code-runner/python` | `@cheetah-coder/python` |
-| `@code-runner/go` | `@cheetah-coder/go` |
-| `@code-runner/rust` | `@cheetah-coder/rust` |
-| `@code-runner/java` | `@cheetah-coder/java` |
-| `@code-runner/react` | `@cheetah-coder/react` |
-| `@code-runner/react-e2e` | `@cheetah-coder/react-e2e` |
+| `@cheetah-coder/core` | `@cheetah-coder/core` |
+| `@cheetah-coder/js` | `@cheetah-coder/js` |
+| `@cheetah-coder/python` | `@cheetah-coder/python` |
+| `@cheetah-coder/go` | `@cheetah-coder/go` |
+| `@cheetah-coder/rust` | `@cheetah-coder/rust` |
+| `@cheetah-coder/java` | `@cheetah-coder/java` |
+| `@cheetah-coder/react` | `@cheetah-coder/react` |
+| `@cheetah-coder/react-e2e` | `@cheetah-coder/react-e2e` |
 
 ### Export condition rename
 
@@ -55,7 +58,7 @@ Every `package.json` `exports` map contains:
 
 ```jsonc
 // Before
-"@code-runner/source": "./src/index.ts"
+"@cheetah-coder/source": "./src/index.ts"
 
 // After
 "@cheetah-coder/source": "./src/index.ts"
@@ -65,7 +68,7 @@ Every `package.json` `exports` map contains:
 
 ```jsonc
 // Before
-"customConditions": ["@code-runner/source"]
+"customConditions": ["@cheetah-coder/source"]
 
 // After
 "customConditions": ["@cheetah-coder/source"]
@@ -87,10 +90,10 @@ The following spec files must be renamed / removed on disk as part of implementi
 ### Functional Requirements
 
 - FR-001: After this spec is implemented, `bunx nx run-many -t build --output-style=stream` must succeed with zero errors.
-- FR-002: Every TypeScript source file import of `@code-runner/` must be updated to `@cheetah-coder/`.
-- FR-003: Every `package.json` `name` field under `@code-runner/` must become `@cheetah-coder/`.
-- FR-004: Every `package.json` dependency reference to `@code-runner/*` must become `@cheetah-coder/*`.
-- FR-005: The custom export condition `@code-runner/source` must be renamed to `@cheetah-coder/source` in all eight `package.json` exports maps and in `tsconfig.base.json`.
+- FR-002: Every TypeScript source file import of `@cheetah-coder/` must be updated to `@cheetah-coder/`.
+- FR-003: Every `package.json` `name` field under `@cheetah-coder/` must become `@cheetah-coder/`.
+- FR-004: Every `package.json` dependency reference to `@cheetah-coder/*` must become `@cheetah-coder/*`.
+- FR-005: The custom export condition `@cheetah-coder/source` must be renamed to `@cheetah-coder/source` in all eight `package.json` exports maps and in `tsconfig.base.json`.
 - FR-006: All README files, instruction files, agent files, and spec files must reflect the new scope name.
 - FR-007: Spec files `003-000`, `004-000`, and `005-000` must be renamed to `004-000`, `005-000`, and `006-000` respectively using `git mv` to preserve git history.
 - FR-008: The root `package.json` `name` field (`"code-runner"`) must **not** be changed.
@@ -111,7 +114,7 @@ The following spec files must be renamed / removed on disk as part of implementi
 
 ```jsonc
 // Before
-"customConditions": ["@code-runner/source"]
+"customConditions": ["@cheetah-coder/source"]
 
 // After
 "customConditions": ["@cheetah-coder/source"]
@@ -119,41 +122,41 @@ The following spec files must be renamed / removed on disk as part of implementi
 
 #### `packages/core/package.json`
 
-- `"name"`: `"@code-runner/core"` → `"@cheetah-coder/core"`
-- `exports["."]["@code-runner/source"]` key → `"@cheetah-coder/source"`
+- `"name"`: `"@cheetah-coder/core"` → `"@cheetah-coder/core"`
+- `exports["."]["@cheetah-coder/source"]` key → `"@cheetah-coder/source"`
 
 #### `packages/runners/js/package.json`
 
-- `"name"`: `"@code-runner/js"` → `"@cheetah-coder/js"`
-- `exports["."]["@code-runner/source"]` key → `"@cheetah-coder/source"`
-- `dependencies["@code-runner/core"]` key → `"@cheetah-coder/core"`
+- `"name"`: `"@cheetah-coder/js"` → `"@cheetah-coder/js"`
+- `exports["."]["@cheetah-coder/source"]` key → `"@cheetah-coder/source"`
+- `dependencies["@cheetah-coder/core"]` key → `"@cheetah-coder/core"`
 
 Apply the same pattern to `python`, `go`, `rust`, `java` runner packages.
 
 #### `packages/adapters/react/package.json`
 
-- `"name"`: `"@code-runner/react"` → `"@cheetah-coder/react"`
-- `exports["."]["@code-runner/source"]` key → `"@cheetah-coder/source"`
-- All six `@code-runner/*` entries in `dependencies` → `@cheetah-coder/*`
+- `"name"`: `"@cheetah-coder/react"` → `"@cheetah-coder/react"`
+- `exports["."]["@cheetah-coder/source"]` key → `"@cheetah-coder/source"`
+- All six `@cheetah-coder/*` entries in `dependencies` → `@cheetah-coder/*`
 
 #### `packages/adapters/react-e2e/package.json`
 
-- `"name"`: `"@code-runner/react-e2e"` → `"@cheetah-coder/react-e2e"`
-- `dependencies["@code-runner/react"]` → `"@cheetah-coder/react"`
+- `"name"`: `"@cheetah-coder/react-e2e"` → `"@cheetah-coder/react-e2e"`
+- `dependencies["@cheetah-coder/react"]` → `"@cheetah-coder/react"`
 
 #### TypeScript source files
 
-The only cross-package import in the codebase uses `@code-runner/core` (in runner packages) and `@code-runner/*` (in the React adapter). Use a case-sensitive find-and-replace across all `.ts` and `.tsx` files under `packages/`:
+The only cross-package import in the codebase uses `@cheetah-coder/core` (in runner packages) and `@cheetah-coder/*` (in the React adapter). Use a case-sensitive find-and-replace across all `.ts` and `.tsx` files under `packages/`:
 
 ```
-@code-runner/ → @cheetah-coder/
+@cheetah-coder/ → @cheetah-coder/
 ```
 
-The `packages.instructions.md` example `import type { RunnerFn } from '@code-runner/core'` will also be caught by a repo-wide search.
+The `packages.instructions.md` example `import type { RunnerFn } from '@cheetah-coder/core'` will also be caught by a repo-wide search.
 
 #### Documentation and instruction files
 
-All occurrences of `@code-runner/` in the following files must be updated:
+All occurrences of `@cheetah-coder/` in the following files must be updated:
 
 - `README.md` (root)
 - `packages/core/README.md`
@@ -167,10 +170,10 @@ All occurrences of `@code-runner/` in the following files must be updated:
 
 ### Search pattern for verification
 
-After applying all changes, the following command must return zero results (no residual `@code-runner/` references excluding the GitHub repo URL and root package name):
+After applying all changes, the following command must return zero results (no residual `@cheetah-coder/` references excluding the GitHub repo URL and root package name):
 
 ```sh
-grep -r "@code-runner/" . \
+grep -r "@cheetah-coder/" . \
   --include="*.ts" \
   --include="*.tsx" \
   --include="*.json" \
@@ -180,13 +183,13 @@ grep -r "@code-runner/" . \
   --exclude-dir=".nx"
 ```
 
-> Exception: the string `@code-runner/source` will appear zero times because both the export key and the tsconfig condition have been renamed. The GitHub repo URL `github.com/docexp/code-runner` and the root `"name": "code-runner"` do **not** contain `@code-runner/` and are not matched by this pattern.
+> Exception: the string `@cheetah-coder/source` will appear zero times because both the export key and the tsconfig condition have been renamed. The GitHub repo URL `github.com/docexp/code-runner` and the root `"name": "code-runner"` do **not** contain `@cheetah-coder/` and are not matched by this pattern.
 
 ## Nx Considerations
 
 - Nx uses the `nx.name` field (short name: `core`, `js`, etc.) internally — these short names are unchanged. No `nx.json` changes are needed.
 - TypeScript project references use folder paths, not npm names — no `tsconfig.lib.json` reference section changes needed beyond what is caught by the package name `name` field updates.
-- After renaming, run `bunx nx reset` to clear any cached project graph that may have stale `@code-runner/` entries.
+- After renaming, run `bunx nx reset` to clear any cached project graph that may have stale `@cheetah-coder/` entries.
 
 ## Security Considerations
 
@@ -194,8 +197,8 @@ None. This is a structural rename with no behaviour change and no new external d
 
 ## Implementation Notes for Developer
 
-1. Run a global find-and-replace of `@code-runner/` → `@cheetah-coder/` across the entire repository, excluding `.git/`, `node_modules/`, and `.nx/`.
-2. Manually verify `tsconfig.base.json` `customConditions` was updated (it uses `@code-runner/source` not `@code-runner/`).
+1. Run a global find-and-replace of `@cheetah-coder/` → `@cheetah-coder/` across the entire repository, excluding `.git/`, `node_modules/`, and `.nx/`.
+2. Manually verify `tsconfig.base.json` `customConditions` was updated (it uses `@cheetah-coder/source` not `@cheetah-coder/`).
 3. Verify the root `package.json` `"name": "code-runner"` was **not** changed.
 4. Run `bunx nx reset` to flush the project graph cache.
 5. Run `bun install` to regenerate the lockfile with new package names.
@@ -213,9 +216,9 @@ None. This is a structural rename with no behaviour change and no new external d
 
 ## Acceptance Criteria
 
-- [ ] `grep -r "@code-runner/" packages/ --include="*.ts" --include="*.tsx"` returns zero results.
-- [ ] `grep -r '"@code-runner/' packages/ --include="*.json"` returns zero results.
-- [ ] `grep -r "@code-runner/source" . --include="*.json" --include="*.jsonc"` returns zero results.
+- [ ] `grep -r "@cheetah-coder/" packages/ --include="*.ts" --include="*.tsx"` returns zero results.
+- [ ] `grep -r '"@cheetah-coder/' packages/ --include="*.json"` returns zero results.
+- [ ] `grep -r "@cheetah-coder/source" . --include="*.json" --include="*.jsonc"` returns zero results.
 - [ ] `tsconfig.base.json` `customConditions` contains `"@cheetah-coder/source"`.
 - [ ] Root `package.json` `"name"` is still `"code-runner"` (unchanged).
 - [ ] All eight `package.json` `name` fields use the `@cheetah-coder/` scope.

@@ -1,17 +1,17 @@
-# @code-runner/java
+# @cheetah-coder/java
 
 Browser Java runner that compiles and executes Java code via the [Piston](https://github.com/engineer-man/piston) open-source code execution engine hosted at emkc.org — no authentication required.
 
 ## Install
 
 ```sh
-npm install @code-runner/java
+npm install @cheetah-coder/java
 ```
 
 ## Quick start
 
 ```ts
-import { runJava } from '@code-runner/java';
+import { runJava } from '@cheetah-coder/java';
 
 const result = await runJava(`
 public class Main {

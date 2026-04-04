@@ -16,14 +16,14 @@ All packages currently live directly under `packages/`. As the number of runners
 
 **In scope:**
 - Move all five runner packages into `packages/runners/`
-- Move `@code-runner/react` and the `react-e2e` project into `packages/adapters/`
+- Move `@cheetah-coder/react` and the `react-e2e` project into `packages/adapters/`
 - Update every path reference across the codebase: `package.json` workspaces, root `tsconfig.json` references, all `tsconfig.lib.json` cross-package references, `packages/react/tsconfig.lib.json`, `packages/react-e2e` config files, Nx `nx.json` if needed, agent files, Copilot instruction files, and spec tracking files
 - Update `packages.instructions.md` and `copilot-instructions.md` to document the new structure
 - Update all agent files to reflect the new layout
 - Update READMEs where they contain path references
 
 **Out of scope:**
-- Renaming npm package names — `@code-runner/js`, `@code-runner/react`, etc. are unchanged
+- Renaming npm package names — `@cheetah-coder/js`, `@cheetah-coder/react`, etc. are unchanged
 - Adding new packages or functionality
 - Changing test content
 
@@ -35,14 +35,14 @@ No new packages are created and no packages are renamed. Seven existing projects
 
 | Current path | New path | Package name (unchanged) |
 |---|---|---|
-| `packages/core` | `packages/core` | `@code-runner/core` |
-| `packages/js` | `packages/runners/js` | `@code-runner/js` |
-| `packages/python` | `packages/runners/python` | `@code-runner/python` |
-| `packages/go` | `packages/runners/go` | `@code-runner/go` |
-| `packages/rust` | `packages/runners/rust` | `@code-runner/rust` |
-| `packages/java` | `packages/runners/java` | `@code-runner/java` |
-| `packages/react` | `packages/adapters/react` | `@code-runner/react` |
-| `packages/react-e2e` | `packages/adapters/react-e2e` | `@code-runner/react-e2e` (private) |
+| `packages/core` | `packages/core` | `@cheetah-coder/core` |
+| `packages/js` | `packages/runners/js` | `@cheetah-coder/js` |
+| `packages/python` | `packages/runners/python` | `@cheetah-coder/python` |
+| `packages/go` | `packages/runners/go` | `@cheetah-coder/go` |
+| `packages/rust` | `packages/runners/rust` | `@cheetah-coder/rust` |
+| `packages/java` | `packages/runners/java` | `@cheetah-coder/java` |
+| `packages/react` | `packages/adapters/react` | `@cheetah-coder/react` |
+| `packages/react-e2e` | `packages/adapters/react-e2e` | `@cheetah-coder/react-e2e` (private) |
 
 ## Requirements
 
@@ -51,8 +51,8 @@ No new packages are created and no packages are renamed. Seven existing projects
 - FR-001: `bunx nx run-many -t build --output-style=stream` must exit 0 for all packages after every chunk.
 - FR-002: `bunx nx run-many -t test --output-style=stream` must exit 0 after every chunk.
 - FR-003: `bunx nx run react-e2e:e2e --output-style=stream` must exit 0 after the final chunk.
-- FR-004: All five runner packages must resolve `@code-runner/core` correctly from their new paths.
-- FR-005: `@code-runner/react` must resolve all five `@code-runner/{lang}` packages correctly from its new path.
+- FR-004: All five runner packages must resolve `@cheetah-coder/core` correctly from their new paths.
+- FR-005: `@cheetah-coder/react` must resolve all five `@cheetah-coder/{lang}` packages correctly from its new path.
 - FR-006: The `react-e2e` Playwright project must locate its `playwright.config.ts` and the Vite dev server correctly from its new path.
 - FR-007: The root `package.json` `workspaces` array must include all three directory groups.
 - FR-008: The root `tsconfig.json` `references` array must point to all new paths.
@@ -72,16 +72,16 @@ No new packages are created and no packages are renamed. Seven existing projects
 
 ```
 packages/
-  core/                       @code-runner/core  (unchanged position)
+  core/                       @cheetah-coder/core  (unchanged position)
   runners/
-    js/                       @code-runner/js
-    python/                   @code-runner/python
-    go/                       @code-runner/go
-    rust/                     @code-runner/rust
-    java/                     @code-runner/java
+    js/                       @cheetah-coder/js
+    python/                   @cheetah-coder/python
+    go/                       @cheetah-coder/go
+    rust/                     @cheetah-coder/rust
+    java/                     @cheetah-coder/java
   adapters/
-    react/                    @code-runner/react
-    react-e2e/                @code-runner/react-e2e (private, e2e only)
+    react/                    @cheetah-coder/react
+    react-e2e/                @cheetah-coder/react-e2e (private, e2e only)
 ```
 
 ### Why `core` stays at top level
@@ -201,7 +201,7 @@ bunx nx run-many -t test --output-style=stream
 - [ ] `bunx nx run-many -t typecheck --output-style=stream` exits 0 for all packages
 - [ ] `bunx nx run-many -t test --output-style=stream` exits 0 for all packages
 - [ ] `bunx nx run react-e2e:e2e --output-style=stream` exits 0
-- [ ] All npm package names are unchanged — `@code-runner/js` etc.
+- [ ] All npm package names are unchanged — `@cheetah-coder/js` etc.
 - [ ] All agent files and instruction files reflect the new directory layout
 
 ## Open Questions

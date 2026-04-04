@@ -1,5 +1,5 @@
 {
-  "name": "@code-runner/react",
+  "name": "@cheetah-coder/react",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -8,7 +8,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@code-runner/source": "./src/index.ts",
+      "@cheetah-coder/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -18,12 +18,12 @@
     "name": "react"
   },
   "dependencies": {
-    "@code-runner/core": "workspace:*",
-    "@code-runner/js": "workspace:*",
-    "@code-runner/python": "workspace:*",
-    "@code-runner/go": "workspace:*",
-    "@code-runner/rust": "workspace:*",
-    "@code-runner/java": "workspace:*"
+    "@cheetah-coder/core": "workspace:*",
+    "@cheetah-coder/js": "workspace:*",
+    "@cheetah-coder/python": "workspace:*",
+    "@cheetah-coder/go": "workspace:*",
+    "@cheetah-coder/rust": "workspace:*",
+    "@cheetah-coder/java": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

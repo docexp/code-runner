@@ -2,7 +2,7 @@
  * RunnerShell — shared React UI component for all code runners.
  * Renders the header, editor textarea, status bar, and output panel.
  */
-import type { RunResult } from '@code-runner/core';
+import type { RunResult } from '@cheetah-coder/core';
 import { useRunner } from './useRunner.js';
 
 export interface RunnerShellProps {

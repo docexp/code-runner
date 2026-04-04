@@ -7,7 +7,7 @@
  *
  * Piston project: https://github.com/engineer-man/piston
  */
-import type { RunnerFn } from '@code-runner/core';
+import type { RunnerFn } from '@cheetah-coder/core';
 
 interface PistonRunResult {
   code: number;

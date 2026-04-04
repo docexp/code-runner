@@ -5,7 +5,7 @@
  *
  * The `onStatus` callback is used to report loading progress to the UI.
  */
-import type { RunResult } from '@code-runner/core';
+import type { RunResult } from '@cheetah-coder/core';
 
 // Minimal Pyodide interface — we only use what we actually call
 interface PyodideInterface {

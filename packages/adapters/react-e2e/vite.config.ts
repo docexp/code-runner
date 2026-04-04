@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   root: import.meta.dirname,
   resolve: {
-    // resolve @code-runner/* to TypeScript source for fast iteration
-    conditions: ['@code-runner/source', 'import', 'module', 'browser', 'default'],
+    // resolve @cheetah-coder/* to TypeScript source for fast iteration
+    conditions: ['@cheetah-coder/source', 'import', 'module', 'browser', 'default'],
   },
   plugins: [react()],
   server: {
