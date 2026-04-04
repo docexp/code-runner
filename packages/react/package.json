@@ -1,0 +1,31 @@
+{
+  "name": "@code-runner/react",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@code-runner/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "name": "react"
+  },
+  "dependencies": {
+    "@code-runner/core": "workspace:*",
+    "@code-runner/runner-js": "workspace:*",
+    "@code-runner/runner-python": "workspace:*",
+    "@code-runner/runner-go": "workspace:*",
+    "@code-runner/runner-rust": "workspace:*",
+    "@code-runner/runner-java": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

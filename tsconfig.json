@@ -2,5 +2,27 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/runner-js"
+    },
+    {
+      "path": "./packages/runner-python"
+    },
+    {
+      "path": "./packages/runner-go"
+    },
+    {
+      "path": "./packages/runner-rust"
+    },
+    {
+      "path": "./packages/runner-java"
+    },
+    {
+      "path": "./packages/react"
+    }
+  ]
 }
