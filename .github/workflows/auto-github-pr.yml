@@ -1,0 +1,30 @@
+name: auto-pull-request
+
+on:
+  push:
+    branches:
+      - "feat/*"
+      - "fix/*"
+      - "docs/*"
+      - "style/*"
+      - "refactor/*"
+      - "perf/*"
+      - "test/*"
+      - "build/*"
+      - "ci/*"
+      - "chore/*"
+      - "revert/*"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: (JOB - auto-pull-request) STEP - auto-pull-request
+        uses: orchst/actions/jobs/auto-pull-request@v1.8.6
+        with:
+          gh-pat: ${{ secrets.GH_PAT }}
+          base-branch: 'master'
