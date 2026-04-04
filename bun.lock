@@ -39,46 +39,7 @@
         "vitest": "~4.1.0",
       },
     },
-    "packages/core": {
-      "name": "@code-runner/core",
-      "version": "0.0.1",
-      "dependencies": {
-        "tslib": "^2.3.0",
-      },
-    },
-    "packages/go": {
-      "name": "@code-runner/go",
-      "version": "0.0.1",
-      "dependencies": {
-        "@code-runner/core": "workspace:*",
-        "tslib": "^2.3.0",
-      },
-    },
-    "packages/java": {
-      "name": "@code-runner/java",
-      "version": "0.0.1",
-      "dependencies": {
-        "@code-runner/core": "workspace:*",
-        "tslib": "^2.3.0",
-      },
-    },
-    "packages/js": {
-      "name": "@code-runner/js",
-      "version": "0.0.1",
-      "dependencies": {
-        "@code-runner/core": "workspace:*",
-        "tslib": "^2.3.0",
-      },
-    },
-    "packages/python": {
-      "name": "@code-runner/python",
-      "version": "0.0.1",
-      "dependencies": {
-        "@code-runner/core": "workspace:*",
-        "tslib": "^2.3.0",
-      },
-    },
-    "packages/react": {
+    "packages/adapters/react": {
       "name": "@code-runner/react",
       "version": "0.0.1",
       "dependencies": {
@@ -93,7 +54,7 @@
         "react": ">=18",
       },
     },
-    "packages/react-e2e": {
+    "packages/adapters/react-e2e": {
       "name": "@code-runner/react-e2e",
       "version": "0.0.1",
       "dependencies": {
@@ -102,7 +63,46 @@
         "react-dom": "^19.0.0",
       },
     },
-    "packages/rust": {
+    "packages/core": {
+      "name": "@code-runner/core",
+      "version": "0.0.1",
+      "dependencies": {
+        "tslib": "^2.3.0",
+      },
+    },
+    "packages/runners/go": {
+      "name": "@code-runner/go",
+      "version": "0.0.1",
+      "dependencies": {
+        "@code-runner/core": "workspace:*",
+        "tslib": "^2.3.0",
+      },
+    },
+    "packages/runners/java": {
+      "name": "@code-runner/java",
+      "version": "0.0.1",
+      "dependencies": {
+        "@code-runner/core": "workspace:*",
+        "tslib": "^2.3.0",
+      },
+    },
+    "packages/runners/js": {
+      "name": "@code-runner/js",
+      "version": "0.0.1",
+      "dependencies": {
+        "@code-runner/core": "workspace:*",
+        "tslib": "^2.3.0",
+      },
+    },
+    "packages/runners/python": {
+      "name": "@code-runner/python",
+      "version": "0.0.1",
+      "dependencies": {
+        "@code-runner/core": "workspace:*",
+        "tslib": "^2.3.0",
+      },
+    },
+    "packages/runners/rust": {
       "name": "@code-runner/rust",
       "version": "0.0.1",
       "dependencies": {
@@ -330,19 +330,19 @@
 
     "@code-runner/core": ["@code-runner/core@workspace:packages/core"],
 
-    "@code-runner/go": ["@code-runner/go@workspace:packages/go"],
+    "@code-runner/go": ["@code-runner/go@workspace:packages/runners/go"],
 
-    "@code-runner/java": ["@code-runner/java@workspace:packages/java"],
+    "@code-runner/java": ["@code-runner/java@workspace:packages/runners/java"],
 
-    "@code-runner/js": ["@code-runner/js@workspace:packages/js"],
+    "@code-runner/js": ["@code-runner/js@workspace:packages/runners/js"],
 
-    "@code-runner/python": ["@code-runner/python@workspace:packages/python"],
+    "@code-runner/python": ["@code-runner/python@workspace:packages/runners/python"],
 
-    "@code-runner/react": ["@code-runner/react@workspace:packages/react"],
+    "@code-runner/react": ["@code-runner/react@workspace:packages/adapters/react"],
 
-    "@code-runner/react-e2e": ["@code-runner/react-e2e@workspace:packages/react-e2e"],
+    "@code-runner/react-e2e": ["@code-runner/react-e2e@workspace:packages/adapters/react-e2e"],
 
-    "@code-runner/rust": ["@code-runner/rust@workspace:packages/rust"],
+    "@code-runner/rust": ["@code-runner/rust@workspace:packages/runners/rust"],
 
     "@csstools/color-helpers": ["@csstools/color-helpers@6.0.2", "", {}, "sha512-LMGQLS9EuADloEFkcTBR3BwV/CGHV7zyDxVRtVDTwdI2Ca4it0CCVTT9wCkxSgokjE5Ho41hEPgb8OEUwoXr6Q=="],
 

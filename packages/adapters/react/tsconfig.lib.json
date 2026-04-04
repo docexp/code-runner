@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
     "types": [
@@ -29,22 +29,22 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../java/tsconfig.lib.json"
+      "path": "../../runners/java/tsconfig.lib.json"
     },
     {
-      "path": "../rust/tsconfig.lib.json"
+      "path": "../../runners/rust/tsconfig.lib.json"
     },
     {
-      "path": "../go/tsconfig.lib.json"
+      "path": "../../runners/go/tsconfig.lib.json"
     },
     {
-      "path": "../python/tsconfig.lib.json"
+      "path": "../../runners/python/tsconfig.lib.json"
     },
     {
-      "path": "../js/tsconfig.lib.json"
+      "path": "../../runners/js/tsconfig.lib.json"
     },
     {
-      "path": "../core/tsconfig.lib.json"
+      "path": "../../core/tsconfig.lib.json"
     }
   ]
 }

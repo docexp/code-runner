@@ -13,13 +13,14 @@ Your sole responsibility is to **think, design, and document** — never to writ
 ## Project Context
 
 ```
-@code-runner/core    — shared RunResult / RunnerFn / Language / RUNNER_META types
-@code-runner/js      — JavaScript (native Function, offline)
-@code-runner/python  — Python (Pyodide/WASM, CDN)
-@code-runner/go      — Go (go.dev/play API)
-@code-runner/rust    — Rust (play.rust-lang.org API)
-@code-runner/java    — Java (Piston/emkc.org API)
-@code-runner/react   — React UI (useRunner hook, RunnerShell, language wrappers)
+packages/core                → @code-runner/core    — shared RunResult / RunnerFn / Language / RUNNER_META types
+packages/runners/js          → @code-runner/js      — JavaScript (native Function, offline)
+packages/runners/python      → @code-runner/python  — Python (Pyodide/WASM, CDN)
+packages/runners/go          → @code-runner/go      — Go (go.dev/play API)
+packages/runners/rust        → @code-runner/rust    — Rust (play.rust-lang.org API)
+packages/runners/java        → @code-runner/java    — Java (Piston/emkc.org API)
+packages/adapters/react      → @code-runner/react   — React UI (useRunner hook, RunnerShell, language wrappers)
+packages/adapters/react-e2e  → (private, e2e only)
 ```
 
 Monorepo tools: **Nx 22** + **Bun** workspaces + **TypeScript** project references.

@@ -9,12 +9,12 @@
 | Package | Import path | Purpose |
 |---|---|---|
 | `packages/core` | `@code-runner/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
-| `packages/js` | `@code-runner/js` | JavaScript runner (native `Function()`, offline) |
-| `packages/python` | `@code-runner/python` | Python runner (Pyodide/WASM, CDN lazy-load) |
-| `packages/go` | `@code-runner/go` | Go runner (go.dev/play API) |
-| `packages/rust` | `@code-runner/rust` | Rust runner (play.rust-lang.org API) |
-| `packages/java` | `@code-runner/java` | Java runner (Piston/emkc.org API) |
-| `packages/react` | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
+| `packages/runners/js` | `@code-runner/js` | JavaScript runner (native `Function()`, offline) |
+| `packages/runners/python` | `@code-runner/python` | Python runner (Pyodide/WASM, CDN lazy-load) |
+| `packages/runners/go` | `@code-runner/go` | Go runner (go.dev/play API) |
+| `packages/runners/rust` | `@code-runner/rust` | Rust runner (play.rust-lang.org API) |
+| `packages/runners/java` | `@code-runner/java` | Java runner (Piston/emkc.org API) |
+| `packages/adapters/react` | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
 
 ## Agent Roles
 
@@ -90,10 +90,12 @@ specs/
   NNN-III-*.md           # Developer chunk tracking files
 packages/
   core/                  # @code-runner/core
-  js/                   # @code-runner/js
-  python/               # @code-runner/python
-  go/                   # @code-runner/go
-  rust/                 # @code-runner/rust
-  java/                 # @code-runner/java
-  react/                # @code-runner/react
+  runners/
+    js/                  # @code-runner/js
+    python/              # @code-runner/python
+    go/                  # @code-runner/go
+    rust/                # @code-runner/rust
+    java/                # @code-runner/java
+  adapters/
+    react/               # @code-runner/react
 ```
