@@ -256,8 +256,10 @@ docs(readme): update project structure diagram
 
 1. Before starting a chunk: `git checkout -b <type>/<scope>-<description>`
 2. After the chunk passes build + tests: `git add -A && git commit -m "<type>(<scope>): <summary>"`
-3. One commit per chunk — squash only if two closely-related fixups belong together
-4. Open a PR to `main`; do not merge without passing CI
+3. Push the branch: `git push -u origin <type>/<scope>-<description>`
+4. Open a **draft** PR to `main`: `gh pr create --draft --base main --title "<type>(<scope>): <summary>" --body "refs spec NNN chunk III"`
+5. One commit per chunk — squash only if two closely-related fixups belong together
+6. Mark the PR ready for review only when all chunks for the spec are done and CI passes: `gh pr ready`
 
 ## What You Build
 
