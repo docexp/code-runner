@@ -29,19 +29,19 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../runner-java/tsconfig.lib.json"
+      "path": "../java/tsconfig.lib.json"
     },
     {
-      "path": "../runner-rust/tsconfig.lib.json"
+      "path": "../rust/tsconfig.lib.json"
     },
     {
-      "path": "../runner-go/tsconfig.lib.json"
+      "path": "../go/tsconfig.lib.json"
     },
     {
-      "path": "../runner-python/tsconfig.lib.json"
+      "path": "../python/tsconfig.lib.json"
     },
     {
-      "path": "../runner-js/tsconfig.lib.json"
+      "path": "../js/tsconfig.lib.json"
     },
     {
       "path": "../core/tsconfig.lib.json"

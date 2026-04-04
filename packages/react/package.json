@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@code-runner/core": "workspace:*",
-    "@code-runner/runner-js": "workspace:*",
-    "@code-runner/runner-python": "workspace:*",
-    "@code-runner/runner-go": "workspace:*",
-    "@code-runner/runner-rust": "workspace:*",
-    "@code-runner/runner-java": "workspace:*"
+    "@code-runner/js": "workspace:*",
+    "@code-runner/python": "workspace:*",
+    "@code-runner/go": "workspace:*",
+    "@code-runner/rust": "workspace:*",
+    "@code-runner/java": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

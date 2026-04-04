@@ -1,7 +1,7 @@
 ---
 id: "001"
 title: "Repository Baseline Stabilisation"
-status: "draft"
+status: "approved"
 created: "2026-04-04"
 updated: "2026-04-04"
 ---

@@ -9,11 +9,11 @@
 | Package | Import path | Purpose |
 |---|---|---|
 | `packages/core` | `@code-runner/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
-| `packages/runner-js` | `@code-runner/runner-js` | JavaScript runner (native `Function()`, offline) |
-| `packages/runner-python` | `@code-runner/runner-python` | Python runner (Pyodide/WASM, CDN lazy-load) |
-| `packages/runner-go` | `@code-runner/runner-go` | Go runner (go.dev/play API) |
-| `packages/runner-rust` | `@code-runner/runner-rust` | Rust runner (play.rust-lang.org API) |
-| `packages/runner-java` | `@code-runner/runner-java` | Java runner (Piston/emkc.org API) |
+| `packages/js` | `@code-runner/js` | JavaScript runner (native `Function()`, offline) |
+| `packages/python` | `@code-runner/python` | Python runner (Pyodide/WASM, CDN lazy-load) |
+| `packages/go` | `@code-runner/go` | Go runner (go.dev/play API) |
+| `packages/rust` | `@code-runner/rust` | Rust runner (play.rust-lang.org API) |
+| `packages/java` | `@code-runner/java` | Java runner (Piston/emkc.org API) |
 | `packages/react` | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
 
 ## Agent Roles
@@ -63,7 +63,7 @@ Node 22 (set via `.prototools`). Do not change the Node version.
 
 ## Nx Conventions
 
-- Package bundler for `core` + `runner-*`: **tsc** (`@nx/js:typescript` plugin, inferred from `tsconfig.lib.json`)
+- Package bundler for `core` + language runners: **tsc** (`@nx/js:typescript` plugin, inferred from `tsconfig.lib.json`)
 - Package bundler for `react`: **Vite** (`@nx/vite` plugin, inferred from `vite.config.mts`)
 - Cross-package deps declared as `"workspace:*"` in `package.json` and as `references` in `tsconfig.lib.json`
 - `nx.json` has `sync.applyChanges: true` — TypeScript project references are auto-synced
@@ -90,10 +90,10 @@ specs/
   NNN-III-*.md           # Developer chunk tracking files
 packages/
   core/                  # @code-runner/core
-  runner-js/             # @code-runner/runner-js
-  runner-python/         # @code-runner/runner-python
-  runner-go/             # @code-runner/runner-go
-  runner-rust/           # @code-runner/runner-rust
-  runner-java/           # @code-runner/runner-java
-  react/                 # @code-runner/react
+  js/                   # @code-runner/js
+  python/               # @code-runner/python
+  go/                   # @code-runner/go
+  rust/                 # @code-runner/rust
+  java/                 # @code-runner/java
+  react/                # @code-runner/react
 ```

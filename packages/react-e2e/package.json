@@ -1,0 +1,23 @@
+{
+  "name": "@code-runner/react-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "nx": {
+    "name": "react-e2e",
+    "targets": {
+      "e2e": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "bunx playwright test --config packages/react-e2e/playwright.config.ts"
+        },
+        "dependsOn": ["build-deps"]
+      }
+    }
+  },
+  "dependencies": {
+    "@code-runner/react": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
