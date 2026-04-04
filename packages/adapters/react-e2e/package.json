@@ -6,6 +6,12 @@
   "nx": {
     "name": "react-e2e",
     "targets": {
+      "typecheck": {
+        "command": "tsc --noEmit",
+        "options": {
+          "cwd": "{projectRoot}"
+        }
+      },
       "e2e": {
         "executor": "nx:run-commands",
         "options": {
