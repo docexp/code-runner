@@ -7,19 +7,19 @@
       "path": "./packages/core"
     },
     {
-      "path": "./packages/runner-js"
+      "path": "./packages/js"
     },
     {
-      "path": "./packages/runner-python"
+      "path": "./packages/python"
     },
     {
-      "path": "./packages/runner-go"
+      "path": "./packages/go"
     },
     {
-      "path": "./packages/runner-rust"
+      "path": "./packages/rust"
     },
     {
-      "path": "./packages/runner-java"
+      "path": "./packages/java"
     },
     {
       "path": "./packages/react"

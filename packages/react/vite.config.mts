@@ -41,4 +41,10 @@ export default defineConfig(() => ({
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    include: ['src/**/*.spec.ts', 'src/**/*.spec.tsx'],
+    setupFiles: ['src/test-setup.ts'],
+  },
 }));

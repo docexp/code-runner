@@ -30,6 +30,12 @@
       }
     },
     {
+      "plugin": "@nx/playwright",
+      "options": {
+        "targetName": "e2e"
+      }
+    },
+    {
       "plugin": "@nx/vite/plugin",
       "options": {
         "buildTargetName": "build",

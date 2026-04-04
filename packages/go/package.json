@@ -1,0 +1,24 @@
+{
+  "name": "@code-runner/go",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@code-runner/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "name": "go"
+  },
+  "dependencies": {
+    "@code-runner/core": "workspace:*",
+    "tslib": "^2.3.0"
+  }
+}

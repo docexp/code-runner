@@ -1,8 +1,55 @@
-# CodeRunner
+# code-runner
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A collection of independently-publishable TypeScript packages that run code in the browser — JavaScript offline, Python via WebAssembly, and Go, Rust, and Java via their official playground APIs.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Packages
+
+| Package | Import path | Description |
+|---|---|---|
+| [`packages/core`](packages/core) | `@code-runner/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
+| [`packages/js`](packages/js) | `@code-runner/js` | JavaScript runner — executes code offline via `Function()` |
+| [`packages/python`](packages/python) | `@code-runner/python` | Python runner — CPython 3 via Pyodide WebAssembly |
+| [`packages/go`](packages/go) | `@code-runner/go` | Go runner — go.dev playground API |
+| [`packages/rust`](packages/rust) | `@code-runner/rust` | Rust runner — play.rust-lang.org API |
+| [`packages/java`](packages/java) | `@code-runner/java` | Java runner — Piston (emkc.org) API |
+| [`packages/react`](packages/react) | `@code-runner/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
+
+## Getting started
+
+```sh
+npm install @code-runner/react
+```
+
+```tsx
+import { CodeRunner } from '@code-runner/react';
+
+export function Demo() {
+  return (
+    <CodeRunner
+      lang="javascript"
+      code={`console.log('Hello, world!');`}
+    />
+  );
+}
+```
+
+`CodeRunner` accepts any `Language` value (`javascript`, `python`, `go`, `rust`, `java`) and renders a self-contained editor + output panel.
+
+## Development
+
+Requires [Bun](https://bun.sh) and Node 22.
+
+```sh
+bun install                                           # install deps
+bunx nx run-many -t build --output-style=stream      # build all packages
+bunx nx run-many -t test --output-style=stream       # unit tests
+bunx nx run react-e2e:e2e --output-style=stream      # Playwright e2e tests
+bunx nx run-many -t typecheck --output-style=stream  # type-check all
+```
+
+## License
+
+MIT
 
 [Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 

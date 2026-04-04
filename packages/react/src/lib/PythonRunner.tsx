@@ -1,5 +1,5 @@
 import { RUNNER_META } from '@code-runner/core';
-import { runPython } from '@code-runner/runner-python';
+import { runPython } from '@code-runner/python';
 import { RunnerShell } from './RunnerShell.js';
 import type { RunnerShellProps } from './RunnerShell.js';
 
