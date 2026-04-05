@@ -25,7 +25,7 @@
     }],
     ["@semantic-release/exec", {
       "prepareCmd": "scripts/release-version.sh ${nextRelease.version}",
-      "publishCmd": "scripts/release-publish.sh"
+      "publishCmd": "scripts/release-publish.sh ${nextRelease.channel}"
     }],
     ["@semantic-release/github", {
       "assets": []
