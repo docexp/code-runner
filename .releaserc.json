@@ -1,0 +1,44 @@
+{
+  "branches": [
+    "main",
+    { "name": "next", "prerelease": "next", "channel": "next" }
+  ],
+  "tagFormat": "v${version}",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular",
+      "releaseRules": [
+        { "type": "refactor", "release": false },
+        { "type": "style",    "release": false },
+        { "type": "test",     "release": false },
+        { "type": "docs",     "release": false },
+        { "type": "build",    "release": false },
+        { "type": "ci",       "release": false },
+        { "type": "chore",    "release": false }
+      ],
+      "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING-CHANGE"]
+      }
+    }],
+    ["@semantic-release/release-notes-generator", {
+      "preset": "angular"
+    }],
+    ["@semantic-release/changelog", {
+      "changelogFile": "CHANGELOG.md"
+    }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/core/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/js/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/python/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/go/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/rust/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/java/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/adapters/react/dist" }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md"],
+      "message": "chore(release): v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }],
+    ["@semantic-release/github", {
+      "assets": []
+    }]
+  ]
+}
