@@ -22,8 +22,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Pin to the exact commit that CI validated — not the branch tip
-          ref: ${{ github.event.workflow_run.head_sha }}
+          # Check out the branch tip, not the triggering SHA.
+          #
+          # Why head_branch instead of head_sha?
+          #   semantic-release pushes a chore(release): commit back to the branch
+          #   after each successful run. On the next workflow_run trigger the pinned
+          #   head_sha is therefore behind origin/<branch>, and semantic-release
+          #   aborts with "local branch is behind the remote". Using head_branch
+          #   always checks out the current branch HEAD, which semantic-release
+          #   can compare correctly. The workflow_run trigger already guarantees
+          #   that CI passed before release fires, so checking out the branch tip
+          #   is safe — the only commits that can be ahead of the CI-validated SHA
+          #   are chore(release): [skip ci] commits from previous release runs.
+          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
           fetch-depth: 0
           persist-credentials: false
 
