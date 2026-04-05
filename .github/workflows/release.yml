@@ -35,7 +35,8 @@ jobs:
         run: |
           mkdir -p /tmp/npm11
           curl -sL https://registry.npmjs.org/npm/-/npm-11.12.1.tgz | tar xz -C /tmp/npm11 --strip-components=1
-          echo "/tmp/npm11/bin" >> $GITHUB_PATH
+          echo "NPM=/tmp/npm11/bin/npm" >> $GITHUB_ENV
+          /tmp/npm11/bin/npm --version
 
       - uses: oven-sh/setup-bun@v2
 
