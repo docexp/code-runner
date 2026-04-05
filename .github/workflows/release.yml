@@ -33,9 +33,9 @@ jobs:
 
       - name: Upgrade npm for OIDC Trusted Publishing support
         run: |
-          NODEJS_BIN=$(dirname $(which node))
-          $NODEJS_BIN/npm install -g npm@latest --prefix "$NODEJS_BIN/.."
-          npm --version
+          mkdir -p /tmp/npm11
+          curl -sL https://registry.npmjs.org/npm/-/npm-11.12.1.tgz | tar xz -C /tmp/npm11 --strip-components=1
+          echo "/tmp/npm11/bin" >> $GITHUB_PATH
 
       - uses: oven-sh/setup-bun@v2
 
