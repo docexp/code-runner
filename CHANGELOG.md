@@ -1,3 +1,10 @@
+# [1.0.0-next.8](https://github.com/docexp/code-runner/compare/v1.0.0-next.7...v1.0.0-next.8) (2026-04-05)
+
+
+### Bug Fixes
+
+* restore token auth via NODE_AUTH_TOKEN and registry-url ([39ffffe](https://github.com/docexp/code-runner/commit/39ffffe670e466b3391bae31fbaa85bdc5a3e7b4))
+
 # [1.0.0-next.7](https://github.com/docexp/code-runner/compare/v1.0.0-next.6...v1.0.0-next.7) (2026-04-05)
 
 
