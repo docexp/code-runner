@@ -1,3 +1,10 @@
+# [1.0.0-next.5](https://github.com/docexp/code-runner/compare/v1.0.0-next.4...v1.0.0-next.5) (2026-04-05)
+
+
+### Bug Fixes
+
+* use OIDC Trusted Publishing for npm auth instead of stored token ([3d6da0a](https://github.com/docexp/code-runner/commit/3d6da0a3ba12cfe5b99df7f1d6e8e0676bfd3535))
+
 # [1.0.0-next.4](https://github.com/docexp/code-runner/compare/v1.0.0-next.3...v1.0.0-next.4) (2026-04-05)
 
 
