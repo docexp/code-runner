@@ -24,16 +24,20 @@
 
 set -euo pipefail
 
-# Bun reads auth from ~/.npmrc (or a project-local .npmrc).
+# Bun reads auth from a project-local .npmrc (or ~/.npmrc).
 # actions/setup-node writes the token to a temp file pointed to by
-# NPM_CONFIG_USERCONFIG, which npm respects but bun does not.
-# We therefore write ~/.npmrc directly so bun can authenticate.
+# NPM_CONFIG_USERCONFIG, which npm respects but bun ignores.
+# We therefore write a repo-root .npmrc so bun can authenticate.
+# This file is gitignored and scoped to this run only.
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+NPMRC="${REPO_ROOT}/.npmrc"
+
 if [[ -n "${NODE_AUTH_TOKEN:-}" ]]; then
-  echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-  echo "Writing auth token to ~/.npmrc for bun"
+  echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > "${NPMRC}"
+  echo "Wrote auth token to .npmrc (repo-local)"
 elif [[ -n "${NPM_CONFIG_USERCONFIG:-}" && -f "${NPM_CONFIG_USERCONFIG}" ]]; then
-  cp "${NPM_CONFIG_USERCONFIG}" ~/.npmrc
-  echo "Copied ${NPM_CONFIG_USERCONFIG} to ~/.npmrc for bun"
+  cp "${NPM_CONFIG_USERCONFIG}" "${NPMRC}"
+  echo "Copied ${NPM_CONFIG_USERCONFIG} to .npmrc (repo-local)"
 else
   echo "WARNING: No npm auth token found (NODE_AUTH_TOKEN / NPM_CONFIG_USERCONFIG)" >&2
 fi

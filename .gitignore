@@ -47,3 +47,6 @@ vite.config.*.timestamp*
 
 # act local secrets (populated by scripts/act-secrets.sh)
 .secrets
+
+# local .npmrc written by scripts/release-publish.sh (contains auth token)
+.npmrc
