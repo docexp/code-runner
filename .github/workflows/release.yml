@@ -32,7 +32,9 @@ jobs:
           node-version: 22
 
       - name: Upgrade npm for OIDC Trusted Publishing support
-        run: npm install -g npm@latest
+        run: |
+          curl -qL https://www.npmjs.com/install.sh | sh
+          npm --version
 
       - uses: oven-sh/setup-bun@v2
 
