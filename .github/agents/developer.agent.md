@@ -217,6 +217,7 @@ bunx nx run react-e2e:e2e --output-style=stream
   - `next  →  main`                      : **rebase merge** (replays `next` commits linearly onto `main`)
   - Merge commits are disabled repo-wide
 - **Never** merge `next → main` manually or via the CLI — always open a PR targeting `main` and use the "Rebase and merge" button. This is the only strategy permitted by the `main` branch ruleset.
+- **Never** open a `next → main` PR until the `Semantic Release` status check has passed on `next`. The `main` ruleset enforces this as a required status check — the PR will be blocked until the pre-release tag (`v1.0.0-next.X`) exists in the repo. This guarantees correct tag ordering: pre-release tags always exist before the stable promotion runs on `main`.
 - **Always** create the chunk tracking file before writing code
 - **Always** declare cross-package deps in both `package.json` (`workspace:*`) and `tsconfig.lib.json` references
 - **Always** pass `--unitTestRunner=vitest` when generating new packages
@@ -226,15 +227,19 @@ bunx nx run react-e2e:e2e --output-style=stream
 
 All work happens on short-lived branches. **Never push directly to `main` or `next`.**
 
-> **Branch model and merge strategies:**
+> **Branch model, merge strategies, and CI/Release triggers:**
 > ```
 > feature/* ──squash──► next ──rebase──► main
-> fix/*     ──squash──►
+> fix/*     ──squash──►       (Release)       (Release)
 > docs/*    ──squash──►
+>             ↑ CI on PR only
 > ```
 > - **`feature/*|fix/*|… → next`**: squash merge only. Each PR lands as a single clean commit on `next`.
-> - **`next → main`**: rebase merge only. `next` commits are replayed linearly onto `main`. This is enforced by the `main` branch ruleset — the "Rebase and merge" button is the only option available on `next → main` PRs.
+> - **`next → main`**: rebase merge only. `next` commits are replayed linearly onto `main`. This is enforced by the `main` branch ruleset.
 > - Merge commits are disabled repo-wide. Do not re-enable them.
+> - **CI (`ci.yml`)** runs on `pull_request` events only — not on pushes to `next` or `main`. The quality gate exists on the PR branch (with strict up-to-date branch enforcement), so running CI again after squash merge to `next` is redundant.
+> - **Release (`release.yml`)** runs on direct `push` to `next` or `main`. One push → one release attempt. There is no `workflow_run` intermediary that could cause double-firing.
+> - The `main` ruleset requires the `Semantic Release` check to have passed on `next` before a `next → main` PR can merge. This ensures pre-release tags exist before semantic-release promotes to stable.
 
 ### Branch naming (Angular convention)
 

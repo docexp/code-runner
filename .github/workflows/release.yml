@@ -1,10 +1,10 @@
 name: Release
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    branches: [next, main]
-    types: [completed]
+  push:
+    branches:
+      - next
+      - main
   workflow_dispatch:
 
 permissions:
@@ -17,20 +17,13 @@ jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
-    # Only run when the triggering CI workflow succeeded (or when manually dispatched)
-    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
         with:
-          # Check out by branch name so semantic-release can determine whether
-          # it is running on `next` (pre-release) or `main` (stable release).
-          # Checking out a bare SHA leaves git in detached HEAD; semantic-release
-          # then cannot resolve the branch name and defaults to `next`, so stable
-          # releases on `main` never fire.
-          # This is safe because @semantic-release/git has been removed — nothing
-          # pushes commits back to the branch, so the branch tip is always the
-          # CI-validated SHA.
-          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
+          # push trigger checks out the branch by default — git HEAD is the
+          # branch tip and GITHUB_REF_NAME is the branch name. semantic-release
+          # reads GITHUB_REF_NAME to determine next vs main context.
+          # fetch-depth: 0 is required to walk full tag history.
           fetch-depth: 0
           persist-credentials: false
 
