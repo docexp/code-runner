@@ -1,3 +1,10 @@
+# [1.0.0-next.3](https://github.com/docexp/code-runner/compare/v1.0.0-next.2...v1.0.0-next.3) (2026-04-05)
+
+
+### Bug Fixes
+
+* release ([23e1e3e](https://github.com/docexp/code-runner/commit/23e1e3e52727ee8eff3eaa5cdd9d0c3d7955ee8e))
+
 # [1.0.0-next.2](https://github.com/docexp/code-runner/compare/v1.0.0-next.1...v1.0.0-next.2) (2026-04-05)
 
 
