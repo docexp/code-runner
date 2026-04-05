@@ -19,18 +19,11 @@
 set -euo pipefail
 
 VERSION="${1:?version argument required}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-PACKAGES=(
-  packages/core
-  packages/runners/js
-  packages/runners/python
-  packages/runners/go
-  packages/runners/rust
-  packages/runners/java
-  packages/adapters/react
-)
-
-for pkg in "${PACKAGES[@]}"; do
+# Derive publish order automatically from workspace dependency graph.
+# Packages are emitted in topological order (dependencies before dependents).
+while IFS= read -r pkg; do
   file="$pkg/package.json"
   if [[ -f "$file" ]]; then
     # jq writes to a temp file then replaces atomically to avoid truncation
@@ -38,4 +31,4 @@ for pkg in "${PACKAGES[@]}"; do
     mv "$file.tmp" "$file"
     echo "✓ $file  version → $VERSION"
   fi
-done
+done < <(node "${SCRIPT_DIR}/release-order.js")

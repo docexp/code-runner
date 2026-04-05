@@ -30,29 +30,14 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # (bun ignores NPM_CONFIG_USERCONFIG which is where actions/setup-node puts it)
 "${SCRIPT_DIR}/release-auth.sh"
 
-# Ordered so that dependencies are published before dependents.
-# core must come first because all runners depend on it;
-# react must come last because it depends on all runners.
-PACKAGES=(
-  packages/core
-  packages/runners/js
-  packages/runners/python
-  packages/runners/go
-  packages/runners/rust
-  packages/runners/java
-  packages/adapters/react
-)
-
-for pkg in "${PACKAGES[@]}"; do
+# Derive publish order automatically from the workspace dependency graph.
+# Packages are emitted in topological order (dependencies before dependents)
+# so consumers on npm always see their deps already available.
+while IFS= read -r pkg; do
   if [[ -f "$pkg/package.json" ]]; then
     echo "Publishing $pkg…"
     # --no-git-checks: skip dirty-tree guard (versions were just bumped)
     (cd "$pkg" && bun publish --no-git-checks)
     echo "✓ Published $pkg"
   fi
-done
-    # --no-git-checks: skip dirty-tree guard (versions were just bumped)
-    (cd "$pkg" && bun publish --no-git-checks)
-    echo "✓ Published $pkg"
-  fi
-done
+done < <(node "${SCRIPT_DIR}/release-order.js")
