@@ -17,5 +17,9 @@
     "playwright.config.ts",
     "vite.config.ts"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../react"
+    }
+  ]
 }
