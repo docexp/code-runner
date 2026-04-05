@@ -31,8 +31,10 @@ permissions:
 jobs:
   promote:
     name: Promote next → main
-    # Safety gate — must explicitly type YES
-    if: github.event.inputs.confirm == 'YES'
+    # Safety gates:
+    #   1. Must be dispatched from the next branch (not a feature branch or main)
+    #   2. Must explicitly type YES in the confirm input
+    if: github.ref_name == 'next' && github.event.inputs.confirm == 'YES'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
