@@ -1,3 +1,10 @@
+# [1.0.0-next.13](https://github.com/docexp/code-runner/compare/v1.0.0-next.12...v1.0.0-next.13) (2026-04-05)
+
+
+### Bug Fixes
+
+* use toolcache npm path to bypass bun npm shim in release-publish ([3553a21](https://github.com/docexp/code-runner/commit/3553a2131519aeb46579f2d0eb7c8413100e44e2))
+
 # [1.0.0-next.12](https://github.com/docexp/code-runner/compare/v1.0.0-next.11...v1.0.0-next.12) (2026-04-05)
 
 
