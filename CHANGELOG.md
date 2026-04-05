@@ -1,3 +1,11 @@
+# [1.0.0-next.2](https://github.com/docexp/code-runner/compare/v1.0.0-next.1...v1.0.0-next.2) (2026-04-05)
+
+
+### Bug Fixes
+
+* write ~/.npmrc for bun auth in release-publish.sh ([03c8f51](https://github.com/docexp/code-runner/commit/03c8f51c9f1413f6106c7722bdcf8d618bd688c4))
+* write repo-local .npmrc for bun auth instead of global ~/.npmrc ([fe2df4a](https://github.com/docexp/code-runner/commit/fe2df4a9e94c23e928fb730bb8f051dc201328e4))
+
 # 1.0.0-next.1 (2026-04-05)
 
 
