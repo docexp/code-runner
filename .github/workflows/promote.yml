@@ -6,13 +6,14 @@ name: Promote to stable
 # Why not a next → main PR?
 #   GitHub PR merge strategies (squash / rebase) always rewrite commit SHAs.
 #   Once SHAs diverge, every subsequent next → main PR shows false conflicts.
-#   A direct fast-forward via GH_PAT (admin bypass on the main ruleset) keeps
-#   both branches on exactly the same linear history.
+#   A direct SSH fast-forward via a deploy key keeps both branches on exactly
+#   the same linear history with no SHA rewriting.
 #
-# Why not the push trigger in release.yml?
-#   GITHUB_TOKEN pushes do not trigger other workflow runs.  Rather than
-#   requiring a PAT just for that trigger, this workflow handles both the
-#   fast-forward and the semantic-release run in one job.
+# Why deploy key and not GH_PAT?
+#   The main ruleset has "Deploy keys" as the sole bypass actor.  This means
+#   only an SSH push authenticated with this specific key can land commits on
+#   main — including the repo admin.  The merge button in any PR is blocked
+#   for all humans, even org/repo admins (GitHub Enterprise enforcement).
 
 on:
   workflow_dispatch:
@@ -41,16 +42,22 @@ jobs:
         with:
           fetch-depth: 0
           ref: next
-          # Use GH_PAT so the subsequent push can bypass the main branch ruleset.
-          # The PAT owner (repo admin) is the bypass actor configured on the
-          # main ruleset.  persist-credentials is left at the default (true) so
-          # the push step can use the stored credential directly.
-          token: ${{ secrets.GH_PAT }}
+
+      - name: Setup SSH deploy key for main push
+        # The deploy key is the sole bypass actor on the main ruleset.
+        # Only this SSH push can land commits on main — the merge button
+        # in any PR remains blocked for all humans including repo admins.
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PROMOTE_DEPLOY_KEY }}
 
       - name: Fast-forward main to next
-        # force=false ensures this is a pure fast-forward — it fails if main
-        # has diverged (which would indicate a bug in the promotion process).
-        run: git push origin HEAD:refs/heads/main
+        # Switches the remote to SSH and pushes HEAD to main.
+        # force=false (default) — fails if main has diverged, making any
+        # history problem immediately visible.
+        run: |
+          git remote set-url origin git@github.com:docexp/code-runner.git
+          git push origin HEAD:refs/heads/main
 
       - uses: actions/setup-node@v4
         with:
