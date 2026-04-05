@@ -1,3 +1,10 @@
+# [1.0.0-next.10](https://github.com/docexp/code-runner/compare/v1.0.0-next.9...v1.0.0-next.10) (2026-04-05)
+
+
+### Bug Fixes
+
+* log npm version in publish script to verify upgraded npm is used ([9b30c76](https://github.com/docexp/code-runner/commit/9b30c7697aac0bd935c03c4422f632aa32927abe))
+
 # [1.0.0-next.9](https://github.com/docexp/code-runner/compare/v1.0.0-next.8...v1.0.0-next.9) (2026-04-05)
 
 
