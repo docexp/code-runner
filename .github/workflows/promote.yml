@@ -59,6 +59,12 @@ jobs:
           git remote set-url origin git@github.com:docexp/code-runner.git
           git push origin HEAD:refs/heads/main
 
+      - name: Switch local HEAD to main
+        # semantic-release detects the branch via `git rev-parse --abbrev-ref HEAD`,
+        # not via env vars. We must be on the main branch for it to run in stable
+        # context and compute the correct version from the pre-release tags.
+        run: git checkout -B main
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -88,11 +94,7 @@ jobs:
         run: bunx nx run-many -t build --output-style=stream
 
       - name: Stable release
-        # Override GITHUB_REF_NAME so semantic-release sees 'main' context and
-        # publishes a stable version (not a pre-release).
         run: bunx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          GITHUB_REF: refs/heads/main
-          GITHUB_REF_NAME: main
           NPM_CONFIG_PROVENANCE: "true"
