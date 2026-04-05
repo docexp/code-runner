@@ -22,8 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Pin to the exact commit that CI validated — not the branch tip
-          ref: ${{ github.event.workflow_run.head_sha }}
+          # Pin to the exact commit that CI validated — not the branch tip.
+          # safe to use head_sha here because semantic-release no longer pushes
+          # any commits back (no @semantic-release/git plugin), so there is
+          # nothing that can advance the branch beyond the CI-validated SHA.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
