@@ -1,3 +1,11 @@
+# [1.0.0-next.12](https://github.com/docexp/code-runner/compare/v1.0.0-next.11...v1.0.0-next.12) (2026-04-05)
+
+
+### Bug Fixes
+
+* replace npm in toolcache prefix to upgrade to v11 ([dcf57b2](https://github.com/docexp/code-runner/commit/dcf57b264453ab548aabd74777eae7f9779ed9eb))
+* use explicit NPM env var to invoke npm 11 in publish script ([ed25245](https://github.com/docexp/code-runner/commit/ed2524516e2addd34816d61f69f74ba918b8ddf2))
+
 # [1.0.0-next.11](https://github.com/docexp/code-runner/compare/v1.0.0-next.10...v1.0.0-next.11) (2026-04-05)
 
 
