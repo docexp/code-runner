@@ -26,13 +26,13 @@
     ["@semantic-release/changelog", {
       "changelogFile": "CHANGELOG.md"
     }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/core/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/runners/js/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/runners/python/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/runners/go/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/runners/rust/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/runners/java/dist" }],
-    ["@semantic-release/npm", { "pkgRoot": "packages/adapters/react/dist" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/core" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/js" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/python" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/go" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/rust" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/runners/java" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/adapters/react" }],
     ["@semantic-release/git", {
       "assets": ["CHANGELOG.md"],
       "message": "chore(release): v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
