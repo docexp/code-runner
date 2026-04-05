@@ -2,7 +2,7 @@
 spec: "006"
 chunk: "001"
 title: "Semantic Release pipeline: devDeps, package metadata, .releaserc.json, workflow"
-status: "in-progress"
+status: "done"
 ---
 
 # Chunk 001: Semantic Release pipeline
@@ -44,6 +44,6 @@ Not in scope: branch protection rules (GitHub UI), npm org creation, first live 
 | `.github/workflows/release.yml` | Created |
 
 ## Post-Implementation Checklist
-- [ ] `bunx nx run-many -t build --output-style=stream` passes
-- [ ] No TypeScript errors (`bunx nx run-many -t typecheck --output-style=stream`)
-- [ ] Chunk status updated to `done`
+- [x] `bunx nx run-many -t build --output-style=stream` passes
+- [x] No TypeScript errors (`bunx nx run-many -t typecheck --output-style=stream`)
+- [x] Chunk status updated to `done`

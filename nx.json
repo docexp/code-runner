@@ -56,5 +56,10 @@
         "unitTestRunner": "none"
       }
     }
+  },
+  "targetDefaults": {
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    }
   }
 }
