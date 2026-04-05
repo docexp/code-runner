@@ -1,6 +1,6 @@
 {
   "name": "@cheetah-coder/go",
-  "version": "1.0.0-next.10",
+  "version": "1.0.0-next.11",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

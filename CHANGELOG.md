@@ -1,3 +1,11 @@
+# [1.0.0-next.11](https://github.com/docexp/code-runner/compare/v1.0.0-next.10...v1.0.0-next.11) (2026-04-05)
+
+
+### Bug Fixes
+
+* extract npm 11 tarball and prepend to GITHUB_PATH ([3d51a9c](https://github.com/docexp/code-runner/commit/3d51a9cc7300f039e4b85d7792585d20abd0da1b))
+* install npm v11 into node toolcache bin path ([9a73cf8](https://github.com/docexp/code-runner/commit/9a73cf8d434262a01752ef5eef7f0ab0c3edcbd8))
+
 # [1.0.0-next.10](https://github.com/docexp/code-runner/compare/v1.0.0-next.9...v1.0.0-next.10) (2026-04-05)
 
 
