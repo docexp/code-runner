@@ -22,11 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Pin to the exact commit that CI validated — not the branch tip.
-          # safe to use head_sha here because semantic-release no longer pushes
-          # any commits back (no @semantic-release/git plugin), so there is
-          # nothing that can advance the branch beyond the CI-validated SHA.
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          # Check out by branch name so semantic-release can determine whether
+          # it is running on `next` (pre-release) or `main` (stable release).
+          # Checking out a bare SHA leaves git in detached HEAD; semantic-release
+          # then cannot resolve the branch name and defaults to `next`, so stable
+          # releases on `main` never fire.
+          # This is safe because @semantic-release/git has been removed — nothing
+          # pushes commits back to the branch, so the branch tip is always the
+          # CI-validated SHA.
+          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
           fetch-depth: 0
           persist-credentials: false
 
