@@ -24,6 +24,20 @@
 
 set -euo pipefail
 
+# Bun reads auth from ~/.npmrc (or a project-local .npmrc).
+# actions/setup-node writes the token to a temp file pointed to by
+# NPM_CONFIG_USERCONFIG, which npm respects but bun does not.
+# We therefore write ~/.npmrc directly so bun can authenticate.
+if [[ -n "${NODE_AUTH_TOKEN:-}" ]]; then
+  echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+  echo "Writing auth token to ~/.npmrc for bun"
+elif [[ -n "${NPM_CONFIG_USERCONFIG:-}" && -f "${NPM_CONFIG_USERCONFIG}" ]]; then
+  cp "${NPM_CONFIG_USERCONFIG}" ~/.npmrc
+  echo "Copied ${NPM_CONFIG_USERCONFIG} to ~/.npmrc for bun"
+else
+  echo "WARNING: No npm auth token found (NODE_AUTH_TOKEN / NPM_CONFIG_USERCONFIG)" >&2
+fi
+
 # Ordered so that dependencies are published before dependents.
 # core must come first because all runners depend on it;
 # react must come last because it depends on all runners.
