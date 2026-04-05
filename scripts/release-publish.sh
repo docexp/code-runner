@@ -25,6 +25,12 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# oven-sh/setup-bun prepends ~/.bun/bin to PATH and bun ships an npm shim
+# that reports npm 10.x. Resolve npm via the node binary instead — bun does
+# not ship a 'node' shim, so $(which node) always points to the Node toolcache
+# whose bin/ directory holds the upgraded npm 11 we extracted in the workflow.
+NPM_BIN="$(dirname "$(which node)")/npm"
+
 # Write a repo-local .npmrc as a belt-and-suspenders auth fallback.
 "${SCRIPT_DIR}/release-auth.sh"
 
@@ -36,7 +42,7 @@ while IFS= read -r pkg; do
     continue
   fi
 
-  echo "Publishing $pkg… (npm $(npm --version))"
+  echo "Publishing $pkg… (npm $("$NPM_BIN" --version))"
 
   PKGJSON="$pkg/package.json"
   VERSION="$(jq -r '.version' "$PKGJSON")"
@@ -51,7 +57,7 @@ while IFS= read -r pkg; do
     if .devDependencies  then .devDependencies  |= rw($v) else . end
   ' "$PKGJSON" > "$PKGJSON.tmp" && mv "$PKGJSON.tmp" "$PKGJSON"
 
-  (cd "$pkg" && npm publish --access public --tag next)
+  (cd "$pkg" && "$NPM_BIN" publish --access public --tag next)
 
   # Restore source package.json (workspace:* belongs in the monorepo source)
   printf '%s' "$ORIGINAL" > "$PKGJSON"
