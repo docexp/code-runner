@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - next
-      - main
+  # workflow_dispatch kept for manual re-runs on next (e.g. to retry a failed
+  # pre-release).  Stable releases on main are handled by promote.yml.
   workflow_dispatch:
 
 permissions:
