@@ -212,8 +212,11 @@ bunx nx run react-e2e:e2e --output-style=stream
 - **Never** omit `--output-style=stream` from Nx commands in this terminal environment
 - **Never** commit directly to `main` or `next` — always use a short-lived branch
 - **Never** force-push to `main` or `next` — branch protection is active; force-push is permanently disabled on both
-- **Never** change the repository merge strategy — the repo is configured for merge commits only (squash and rebase are disabled). This is intentional: squash merges destroy shared ancestry between `next` and `main`, causing every future `next → main` PR to show the full history as new commits. Do not re-enable squash or rebase.
-- **Never** merge `next → main` manually or via the CLI — always open a PR and let the merge commit be created by GitHub. The merge commit is what allows semantic-release to detect the correct branch context for a stable release.
+- **Never** change the repository merge strategy — it is fixed by rulesets and must not be altered:
+  - `feature/*|fix/*|docs/*|…  →  next` : **squash merge** (flattens branch into one commit on `next`)
+  - `next  →  main`                      : **rebase merge** (replays `next` commits linearly onto `main`)
+  - Merge commits are disabled repo-wide
+- **Never** merge `next → main` manually or via the CLI — always open a PR targeting `main` and use the "Rebase and merge" button. This is the only strategy permitted by the `main` branch ruleset.
 - **Always** create the chunk tracking file before writing code
 - **Always** declare cross-package deps in both `package.json` (`workspace:*`) and `tsconfig.lib.json` references
 - **Always** pass `--unitTestRunner=vitest` when generating new packages
@@ -223,7 +226,15 @@ bunx nx run react-e2e:e2e --output-style=stream
 
 All work happens on short-lived branches. **Never push directly to `main` or `next`.**
 
-> **Branch model:** `feature/* → next → main`. Feature/fix/docs branches target `next` via PR. `next → main` promotion happens via a separate PR using a **merge commit** (never squash, never rebase). The merge commit is what semantic-release uses to detect it is running on `main` and should publish a stable release.
+> **Branch model and merge strategies:**
+> ```
+> feature/* ──squash──► next ──rebase──► main
+> fix/*     ──squash──►
+> docs/*    ──squash──►
+> ```
+> - **`feature/*|fix/*|… → next`**: squash merge only. Each PR lands as a single clean commit on `next`.
+> - **`next → main`**: rebase merge only. `next` commits are replayed linearly onto `main`. This is enforced by the `main` branch ruleset — the "Rebase and merge" button is the only option available on `next → main` PRs.
+> - Merge commits are disabled repo-wide. Do not re-enable them.
 
 ### Branch naming (Angular convention)
 
