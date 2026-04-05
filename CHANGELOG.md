@@ -1,3 +1,10 @@
+# [1.0.0-next.7](https://github.com/docexp/code-runner/compare/v1.0.0-next.6...v1.0.0-next.7) (2026-04-05)
+
+
+### Bug Fixes
+
+* explicit --provenance flag and clear stale .npmrc for OIDC auth ([d042699](https://github.com/docexp/code-runner/commit/d04269912e4990ef5f27462f864c548f9f22106a))
+
 # [1.0.0-next.6](https://github.com/docexp/code-runner/compare/v1.0.0-next.5...v1.0.0-next.6) (2026-04-05)
 
 
