@@ -57,7 +57,10 @@ while IFS= read -r pkg; do
     if .devDependencies  then .devDependencies  |= rw($v) else . end
   ' "$PKGJSON" > "$PKGJSON.tmp" && mv "$PKGJSON.tmp" "$PKGJSON"
 
-  (cd "$pkg" && "$NPM_BIN" publish --access public --tag next)
+  # nextRelease.channel is passed as $1 by @semantic-release/exec:
+  #   "next" on the next branch, empty string on main (→ defaults to "latest")
+  TAG="${1:-latest}"
+  (cd "$pkg" && "$NPM_BIN" publish --access public --tag "$TAG")
 
   # Restore source package.json (workspace:* belongs in the monorepo source)
   printf '%s' "$ORIGINAL" > "$PKGJSON"
