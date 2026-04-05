@@ -1,0 +1,89 @@
+name: Promote to stable
+
+# Manual promotion: fast-forwards main to the current next tip, then runs
+# semantic-release in main context to publish the stable version.
+#
+# Why not a next → main PR?
+#   GitHub PR merge strategies (squash / rebase) always rewrite commit SHAs.
+#   Once SHAs diverge, every subsequent next → main PR shows false conflicts.
+#   A direct fast-forward via GH_PAT (admin bypass on the main ruleset) keeps
+#   both branches on exactly the same linear history.
+#
+# Why not the push trigger in release.yml?
+#   GITHUB_TOKEN pushes do not trigger other workflow runs.  Rather than
+#   requiring a PAT just for that trigger, this workflow handles both the
+#   fast-forward and the semantic-release run in one job.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type YES to promote next → main and publish stable release'
+        required: true
+        default: ''
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write   # required for npm OIDC Trusted Publishing
+
+jobs:
+  promote:
+    name: Promote next → main
+    # Safety gate — must explicitly type YES
+    if: github.event.inputs.confirm == 'YES'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: next
+          # Use GH_PAT so the subsequent push can bypass the main branch ruleset.
+          # The PAT owner (repo admin) is the bypass actor configured on the
+          # main ruleset.  persist-credentials is left at the default (true) so
+          # the push step can use the stored credential directly.
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Fast-forward main to next
+        # force=false ensures this is a pure fast-forward — it fails if main
+        # has diverged (which would indicate a bug in the promotion process).
+        run: git push origin HEAD:refs/heads/main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm for OIDC Trusted Publishing support
+        run: |
+          NPM_DIR=$(dirname $(dirname $(which node)))/lib/node_modules/npm
+          rm -rf "${NPM_DIR:?}"
+          mkdir -p "$NPM_DIR"
+          curl -sL https://registry.npmjs.org/npm/-/npm-11.12.1.tgz | tar xz -C "$NPM_DIR" --strip-components=1
+          npm --version
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            .nx/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: ${{ runner.os }}-bun-
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build all packages
+        run: bunx nx run-many -t build --output-style=stream
+
+      - name: Stable release
+        # Override GITHUB_REF_NAME so semantic-release sees 'main' context and
+        # publishes a stable version (not a pre-release).
+        run: bunx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_REF: refs/heads/main
+          GITHUB_REF_NAME: main
+          NPM_CONFIG_PROVENANCE: "true"
