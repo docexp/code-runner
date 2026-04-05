@@ -1,1 +1,2 @@
+PATH="$HOME/.bun/bin:$PATH"
 CI=true bunx nx run-many -t test --output-style=stream

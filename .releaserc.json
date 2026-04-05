@@ -33,6 +33,7 @@
     ["@semantic-release/npm", { "pkgRoot": "packages/runners/rust" }],
     ["@semantic-release/npm", { "pkgRoot": "packages/runners/java" }],
     ["@semantic-release/npm", { "pkgRoot": "packages/adapters/react" }],
+    ["./scripts/sr-workspace-resolver.mjs"],
     ["@semantic-release/git", {
       "assets": ["CHANGELOG.md"],
       "message": "chore(release): v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
