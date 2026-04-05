@@ -34,6 +34,10 @@ jobs:
       - name: Upgrade npm for OIDC Trusted Publishing support
         run: |
           NPM_DIR=$(dirname $(dirname $(which node)))/lib/node_modules/npm
+          # Delete all npm 10 files first — partial overwrites leave stale files
+          # that cause "Class extends value undefined" errors when npm 11 loads.
+          rm -rf "${NPM_DIR:?}"
+          mkdir -p "$NPM_DIR"
           curl -sL https://registry.npmjs.org/npm/-/npm-11.12.1.tgz | tar xz -C "$NPM_DIR" --strip-components=1
           npm --version
 
