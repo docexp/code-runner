@@ -1,3 +1,11 @@
+# [1.0.0-next.9](https://github.com/docexp/code-runner/compare/v1.0.0-next.8...v1.0.0-next.9) (2026-04-05)
+
+
+### Bug Fixes
+
+* upgrade npm to 11.5.1+ required for OIDC Trusted Publishing ([97256e0](https://github.com/docexp/code-runner/commit/97256e06e6e49c3fc4cddf3ed7bbcc42ed232e84))
+* use npm install.sh script to upgrade npm to v11 ([015bfaf](https://github.com/docexp/code-runner/commit/015bfafead5b57ba6c5bd05c2d53bb6074cb1e05))
+
 # [1.0.0-next.8](https://github.com/docexp/code-runner/compare/v1.0.0-next.7...v1.0.0-next.8) (2026-04-05)
 
 

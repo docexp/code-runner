@@ -1,6 +1,6 @@
 {
   "name": "@cheetah-coder/core",
-  "version": "1.0.0-next.8",
+  "version": "1.0.0-next.9",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
