@@ -28,5 +28,5 @@ jobs:
       - uses: devops-infra/action-pull-request@v0.5.5
         with:
           github_token: ${{ secrets.GH_PAT }}
-          target_branch: main
+          target_branch: next
           get_diff: true
