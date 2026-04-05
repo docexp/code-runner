@@ -30,7 +30,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm for OIDC Trusted Publishing support
+        run: npm install -g npm@latest
 
       - uses: oven-sh/setup-bun@v2
 
@@ -51,5 +53,4 @@ jobs:
         run: bunx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
