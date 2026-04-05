@@ -1,3 +1,10 @@
+# [1.0.0-next.6](https://github.com/docexp/code-runner/compare/v1.0.0-next.5...v1.0.0-next.6) (2026-04-05)
+
+
+### Bug Fixes
+
+* remove registry-url from setup-node to allow OIDC auth ([4f7e754](https://github.com/docexp/code-runner/commit/4f7e754a70a9322acb49d9fb4831b89b3ef91e68))
+
 # [1.0.0-next.5](https://github.com/docexp/code-runner/compare/v1.0.0-next.4...v1.0.0-next.5) (2026-04-05)
 
 
