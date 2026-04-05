@@ -3,6 +3,7 @@
     "target": "es2022",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "customConditions": ["@cheetah-coder/source"],
     "jsx": "react-jsx",
     "strict": true,
     "noEmit": true,
@@ -16,9 +17,5 @@
     "playwright.config.ts",
     "vite.config.ts"
   ],
-  "references": [
-    {
-      "path": "../react"
-    }
-  ]
+  "references": []
 }
