@@ -1,3 +1,10 @@
+# [1.0.0-next.4](https://github.com/docexp/code-runner/compare/v1.0.0-next.3...v1.0.0-next.4) (2026-04-05)
+
+
+### Bug Fixes
+
+* switch publish from bun to npm with workspace rewrite ([340439f](https://github.com/docexp/code-runner/commit/340439fe032a3a36c7ff6538478ade048dd2cb9c))
+
 # [1.0.0-next.3](https://github.com/docexp/code-runner/compare/v1.0.0-next.2...v1.0.0-next.3) (2026-04-05)
 
 
