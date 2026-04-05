@@ -36,8 +36,7 @@ while IFS= read -r pkg; do
     continue
   fi
 
-  NPM_BIN="${NPM:-npm}"
-  echo "Publishing $pkg… (npm $(${NPM_BIN} --version))"
+  echo "Publishing $pkg… (npm $(npm --version))"
 
   PKGJSON="$pkg/package.json"
   VERSION="$(jq -r '.version' "$PKGJSON")"
@@ -52,7 +51,7 @@ while IFS= read -r pkg; do
     if .devDependencies  then .devDependencies  |= rw($v) else . end
   ' "$PKGJSON" > "$PKGJSON.tmp" && mv "$PKGJSON.tmp" "$PKGJSON"
 
-  (cd "$pkg" && "${NPM_BIN}" publish --access public --tag next)
+  (cd "$pkg" && npm publish --access public --tag next)
 
   # Restore source package.json (workspace:* belongs in the monorepo source)
   printf '%s' "$ORIGINAL" > "$PKGJSON"
