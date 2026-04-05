@@ -210,7 +210,13 @@ bunx nx run react-e2e:e2e --output-style=stream
 - **Never** use `import React from 'react'` in `.tsx` files — React 17+ JSX transform is active
 - **Never** introduce `any` types — use `unknown` and narrow
 - **Never** omit `--output-style=stream` from Nx commands in this terminal environment
-- **Never** commit directly to `main` — always use a branch
+- **Never** commit directly to `main` or `next` — always use a short-lived branch
+- **Never** force-push to `main` or `next` — branch protection is active; force-push is permanently disabled on both
+- **Never** change the repository merge strategy — it is fixed by rulesets and must not be altered:
+  - `feature/*|fix/*|docs/*|…  →  next` : **squash merge** (flattens branch into one commit on `next`)
+  - `next  →  main`                      : **rebase merge** (replays `next` commits linearly onto `main`)
+  - Merge commits are disabled repo-wide
+- **Never** merge `next → main` manually or via the CLI — always open a PR targeting `main` and use the "Rebase and merge" button. This is the only strategy permitted by the `main` branch ruleset.
 - **Always** create the chunk tracking file before writing code
 - **Always** declare cross-package deps in both `package.json` (`workspace:*`) and `tsconfig.lib.json` references
 - **Always** pass `--unitTestRunner=vitest` when generating new packages
@@ -218,7 +224,17 @@ bunx nx run react-e2e:e2e --output-style=stream
 
 ## Git Workflow
 
-All work happens on short-lived branches. **Never push directly to `main`.**
+All work happens on short-lived branches. **Never push directly to `main` or `next`.**
+
+> **Branch model and merge strategies:**
+> ```
+> feature/* ──squash──► next ──rebase──► main
+> fix/*     ──squash──►
+> docs/*    ──squash──►
+> ```
+> - **`feature/*|fix/*|… → next`**: squash merge only. Each PR lands as a single clean commit on `next`.
+> - **`next → main`**: rebase merge only. `next` commits are replayed linearly onto `main`. This is enforced by the `main` branch ruleset — the "Rebase and merge" button is the only option available on `next → main` PRs.
+> - Merge commits are disabled repo-wide. Do not re-enable them.
 
 ### Branch naming (Angular convention)
 
