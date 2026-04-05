@@ -36,7 +36,7 @@ while IFS= read -r pkg; do
     continue
   fi
 
-  echo "Publishing $pkg…"
+  echo "Publishing $pkg… (npm $(npm --version))"
 
   PKGJSON="$pkg/package.json"
   VERSION="$(jq -r '.version' "$PKGJSON")"
