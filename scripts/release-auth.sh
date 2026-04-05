@@ -27,9 +27,9 @@ elif [[ -n "${NPM_CONFIG_USERCONFIG:-}" && -f "${NPM_CONFIG_USERCONFIG}" ]]; the
   cp "${NPM_CONFIG_USERCONFIG}" "${NPMRC}"
   echo "✓ Copied ${NPM_CONFIG_USERCONFIG} to .npmrc (repo-local)"
 else
-  # No stored token — write a registry-only .npmrc so it overrides any
-  # setup-node template that may have an empty _authToken placeholder.
-  # npm will use the GitHub OIDC token via npm Trusted Publishing for auth.
-  echo "registry=https://registry.npmjs.org/" > "${NPMRC}"
+  # No stored token — remove any .npmrc that setup-node may have written with
+  # an empty _authToken placeholder, so npm falls through to OIDC Trusted
+  # Publishing authentication (triggered by --provenance in npm publish).
+  rm -f "${NPMRC}"
   echo "ℹ No auth token found; expecting OIDC Trusted Publisher authentication."
 fi

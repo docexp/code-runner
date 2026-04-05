@@ -51,7 +51,7 @@ while IFS= read -r pkg; do
     if .devDependencies  then .devDependencies  |= rw($v) else . end
   ' "$PKGJSON" > "$PKGJSON.tmp" && mv "$PKGJSON.tmp" "$PKGJSON"
 
-  (cd "$pkg" && npm publish --access public --tag next)
+  (cd "$pkg" && npm publish --access public --tag next --provenance)
 
   # Restore source package.json (workspace:* belongs in the monorepo source)
   printf '%s' "$ORIGINAL" > "$PKGJSON"
