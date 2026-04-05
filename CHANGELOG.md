@@ -1,3 +1,10 @@
+# [1.0.0-next.14](https://github.com/docexp/code-runner/compare/v1.0.0-next.13...v1.0.0-next.14) (2026-04-05)
+
+
+### Bug Fixes
+
+* clear npm dir before extracting v11 to prevent stale file mix ([75990a6](https://github.com/docexp/code-runner/commit/75990a6dcfb6cc9e518457278915696c50b46664))
+
 # [1.0.0-next.13](https://github.com/docexp/code-runner/compare/v1.0.0-next.12...v1.0.0-next.13) (2026-04-05)
 
 
