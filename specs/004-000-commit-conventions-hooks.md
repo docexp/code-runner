@@ -136,9 +136,10 @@ bunx --no -- commitlint --edit "$1"
 ### `.husky/pre-push`
 
 ```sh
-bunx nx run-many -t test --output-style=stream
+CI=true bunx nx run-many -t test --output-style=stream
 ```
 
+- `CI=true` forces Vitest into non-watch (run-once) mode so the hook exits after tests complete.
 - Runs all `test` targets across every project.
 - `--output-style=stream` prevents the Nx TUI from capturing the alternate buffer in the terminal.
 - The hook exits non-zero if any test fails, blocking the push.
