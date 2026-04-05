@@ -33,7 +33,8 @@ jobs:
 
       - name: Upgrade npm for OIDC Trusted Publishing support
         run: |
-          curl -qL https://www.npmjs.com/install.sh | sh
+          NODEJS_BIN=$(dirname $(which node))
+          $NODEJS_BIN/npm install -g npm@latest --prefix "$NODEJS_BIN/.."
           npm --version
 
       - uses: oven-sh/setup-bun@v2
