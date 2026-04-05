@@ -44,3 +44,6 @@ Thumbs.db
 .claude/settings.local.json
 
 vite.config.*.timestamp*
+
+# act local secrets (populated by scripts/act-secrets.sh)
+.secrets
