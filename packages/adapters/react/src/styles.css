@@ -37,8 +37,8 @@
   counter-increment: shiki-line;
   content: counter(shiki-line);
   display: inline-block;
-  width: 2rem;
-  margin-right: 1.25rem;
+  width: 1.5rem;
+  margin-right: 0.75rem;
   text-align: right;
   color: #71717a;          /* zinc-500 — muted in both light & dark */
   font-variant-numeric: tabular-nums;
