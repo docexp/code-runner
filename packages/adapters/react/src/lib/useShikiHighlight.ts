@@ -17,7 +17,7 @@ function getHighlighter(): Promise<Highlighter> {
   if (!highlighterPromise) {
     highlighterPromise = import('shiki').then(({ createHighlighter }) =>
       createHighlighter({
-        themes: ['vitesse-light', 'vitesse-dark'],
+        themes: ['min-light', 'min-dark'],
         langs: [...SHIKI_LANGS],
       })
     );
@@ -40,7 +40,7 @@ export function useShikiHighlight(code: string, lang: string): string | null {
       setHtml(
         hl.codeToHtml(code, {
           lang: resolvedLang,
-          themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
+          themes: { light: 'min-light', dark: 'min-dark' },
           defaultColor: false,
         })
       );
