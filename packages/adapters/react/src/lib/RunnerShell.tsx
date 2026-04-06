@@ -39,12 +39,11 @@ export function RunnerShell({
 
   return (
     <div
-      className="w-full rounded-lg bg-zinc-500 p-px font-mono text-sm [color-scheme:dark]"
+      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-500 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text] [color-scheme:dark]"
       data-lang={lang}
     >
-    <div className="rounded-[7px] overflow-hidden bg-[--color-cheetah-base] text-[--color-cheetah-text]">
       {/* Header */}
-      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface]">
+      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface] border-b border-zinc-500">
         <span className="text-xs font-semibold tracking-widest uppercase text-[--color-cheetah-muted]">
           {title}
         </span>
@@ -67,7 +66,6 @@ export function RunnerShell({
           ▶&nbsp;Run
         </button>
       </div>
-      <div className="h-px bg-zinc-500" />
 
       {/* Editor */}
       <textarea
@@ -80,10 +78,9 @@ export function RunnerShell({
         autoCapitalize="off"
         className="w-full min-h-[160px] resize-y bg-[--color-cheetah-base] text-[--color-cheetah-text] text-sm font-mono leading-relaxed px-4 py-3 outline-none border-none focus:ring-0 caret-[--color-cheetah-accent]"
       />
-      <div className="h-px bg-zinc-500" />
 
       {/* Status bar */}
-      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] text-xs">
+      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] border-t border-b border-zinc-500 text-xs">
         <span className="font-semibold uppercase tracking-widest text-[--color-cheetah-muted]">
           stdout
         </span>
@@ -101,7 +98,6 @@ export function RunnerShell({
           </a>
         )}
       </div>
-      <div className="h-px bg-zinc-500" />
 
       {/* Output */}
       <pre
@@ -111,7 +107,6 @@ export function RunnerShell({
       >
         {output}
       </pre>
-    </div>
     </div>
   );
 }
