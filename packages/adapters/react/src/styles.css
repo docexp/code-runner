@@ -37,6 +37,7 @@
   counter-increment: shiki-line;
   content: counter(shiki-line);
   display: inline-block;
+  vertical-align: middle;
   width: 1.5rem;
   margin-right: 0.75rem;
   text-align: right;
