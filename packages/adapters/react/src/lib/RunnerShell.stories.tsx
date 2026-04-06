@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 const echoRunner = async (code: string): Promise<RunResult> => ({
   stdout: `Echo: ${code.split('\n')[0]}`,
   stderr: '',
-  exitCode: 0,
+  ok: true,
 });
 
 export const Default: Story = {
@@ -35,7 +35,7 @@ export const WithError: Story = {
     runner: async (): Promise<RunResult> => ({
       stdout: '',
       stderr: 'Something went wrong',
-      exitCode: 1,
+      ok: false,
     }),
   },
 };
