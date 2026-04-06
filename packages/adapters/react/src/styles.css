@@ -38,9 +38,11 @@
   content: counter(shiki-line);
   display: inline-block;
   width: 1.5rem;
-  margin-right: 1.25rem;
+  margin-right: 0.75rem;
   text-align: right;
-  color: var(--color-cheetah-border);  /* zinc-500 — muted in both light & dark */
+  color: var(--color-cheetah-border);
+  opacity: 0.5;
+  font-size: 0.7rem;
   font-variant-numeric: tabular-nums;
   user-select: none;
 }
