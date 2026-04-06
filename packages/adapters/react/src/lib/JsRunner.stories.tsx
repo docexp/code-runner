@@ -22,7 +22,6 @@ export const Arithmetic: Story = {
     code: `const result = [1, 2, 3, 4, 5].reduce((a, b) => a + b, 0);\nconsole.log('Sum:', result);`,
   },
 };
-<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnly: Story = {
   args: {
@@ -35,5 +34,3 @@ export const ReadOnly: Story = {
 console.log(fibonacci(10));`,
   },
 };
-=======
->>>>>>> next

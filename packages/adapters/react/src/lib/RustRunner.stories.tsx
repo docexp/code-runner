@@ -22,7 +22,6 @@ export const Variables: Story = {
     code: `fn main() {\n    let x: u32 = 42;\n    println!("The answer is {x}");\n}`,
   },
 };
-<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnly: Story = {
   args: {
@@ -40,5 +39,3 @@ fn main() {
 }`,
   },
 };
-=======
->>>>>>> next

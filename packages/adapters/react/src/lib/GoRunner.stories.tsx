@@ -45,7 +45,6 @@ func main() {
 }`,
   },
 };
-<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnly: Story = {
   args: {
@@ -59,5 +58,3 @@ func main() {
 }`,
   },
 };
-=======
->>>>>>> next
