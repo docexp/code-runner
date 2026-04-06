@@ -14,6 +14,10 @@
 @source "./lib/**/*.tsx";
 
 /* Shiki read-only highlight overrides */
+.shiki-wrapper {
+  background: color-mix(in srgb, var(--color-cheetah-border) 6%, transparent);
+}
+
 .shiki-wrapper pre {
   background: transparent !important;
   padding: 1.25rem 1rem;
@@ -40,7 +44,7 @@
   width: 1.5rem;
   margin-right: 0.75rem;
   padding-right: 0.75rem;
-  border-right: 1px solid color-mix(in srgb, var(--color-cheetah-border) 20%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--color-cheetah-border) 30%, transparent);
   text-align: right;
   color: var(--color-cheetah-border);
   opacity: 0.5;
