@@ -49,6 +49,7 @@ export const WithPlaygroundUrl: Story = {
     runner: echoRunner,
   },
 };
+<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnly: Story = {
   args: {
@@ -76,3 +77,5 @@ print(greet('Storybook'))`,
     runner: echoRunner,
   },
 };
+=======
+>>>>>>> next

@@ -22,6 +22,7 @@ export const ListComprehension: Story = {
     code: `squares = [x**2 for x in range(1, 6)]\nprint(squares)`,
   },
 };
+<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnly: Story = {
   args: {
@@ -34,3 +35,5 @@ export const ReadOnly: Story = {
 print(fibonacci(10))`,
   },
 };
+=======
+>>>>>>> next

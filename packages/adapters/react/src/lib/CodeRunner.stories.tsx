@@ -50,6 +50,7 @@ export const Java: Story = {
     code: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from Java!");\n    }\n}`,
   },
 };
+<<<<<<< feat/010-shiki-readonly-mode
 
 export const ReadOnlyGo: Story = {
   args: {
@@ -76,3 +77,5 @@ export const ReadOnlyRust: Story = {
 }`,
   },
 };
+=======
+>>>>>>> next
