@@ -1,0 +1,2 @@
+# Storybook static build outputs — contain package.json which Nx would misidentify as projects
+**/storybook-static

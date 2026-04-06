@@ -1,0 +1,9 @@
+{
+  "targets": {
+    "storybook": {
+      "options": {
+        "port": 6007
+      }
+    }
+  }
+}

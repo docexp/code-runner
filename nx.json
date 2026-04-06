@@ -48,6 +48,15 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "storybookTargetName": "storybook",
+        "buildStorybookTargetName": "build-storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "testStorybookTargetName": "test-storybook"
+      }
     }
   ],
   "generators": {
