@@ -49,3 +49,30 @@ export const WithPlaygroundUrl: Story = {
     runner: echoRunner,
   },
 };
+
+export const ReadOnly: Story = {
+  args: {
+    lang: 'javascript',
+    title: 'JavaScript',
+    mode: 'r',
+    code: `function greet(name) {
+  return 'Hello, ' + name + '!';
+}
+
+console.log(greet('Storybook'));`,
+    runner: echoRunner,
+  },
+};
+
+export const ReadOnlyPython: Story = {
+  args: {
+    lang: 'python',
+    title: 'Python',
+    mode: 'r',
+    code: `def greet(name):
+    return f'Hello, {name}!'
+
+print(greet('Storybook'))`,
+    runner: echoRunner,
+  },
+};
