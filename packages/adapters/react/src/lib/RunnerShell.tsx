@@ -39,11 +39,11 @@ export function RunnerShell({
 
   return (
     <div
-      className="w-full rounded-lg overflow-hidden ring-1 ring-white/10 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text]"
+      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-700 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text]"
       data-lang={lang}
     >
       {/* Header */}
-      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface] border-b border-white/10">
+      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface] border-b border-zinc-700">
         <span className="text-xs font-semibold tracking-widest uppercase text-[--color-cheetah-muted]">
           {title}
         </span>
@@ -80,7 +80,7 @@ export function RunnerShell({
       />
 
       {/* Status bar */}
-      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] border-t border-b border-white/10 text-xs">
+      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] border-t border-b border-zinc-700 text-xs">
         <span className="font-semibold uppercase tracking-widest text-[--color-cheetah-muted]">
           stdout
         </span>
