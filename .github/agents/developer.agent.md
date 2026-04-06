@@ -214,10 +214,10 @@ bunx nx run react-e2e:e2e --output-style=stream
 - **Never** force-push to `main` or `next` — branch protection is active; force-push is permanently disabled on both
 - **Never** change the repository merge strategy — it is fixed by rulesets and must not be altered:
   - `feature/*|fix/*|docs/*|…  →  next` : **squash merge** (flattens branch into one commit on `next`)
-  - `next  →  main`                      : **rebase merge** (replays `next` commits linearly onto `main`)
+  - `next  →  main`                      : **fast-forward** via `fast-forward.yml` (true FF push — no SHA rewriting, no merge commits)
   - Merge commits are disabled repo-wide
-- **Never** merge `next → main` manually or via the CLI — always open a PR targeting `main` and use the "Rebase and merge" button. This is the only strategy permitted by the `main` branch ruleset.
-- **Never** open a `next → main` PR until the `Semantic Release` status check has passed on `next`. The `main` ruleset enforces this as a required status check — the PR will be blocked until the pre-release tag (`v1.0.0-next.X`) exists in the repo. This guarantees correct tag ordering: pre-release tags always exist before the stable promotion runs on `main`.
+- **Never** merge `next → main` manually or via the CLI — always open a PR targeting `main` and trigger the merge by commenting `/fast-forward` on it. Only `fast-forward.yml` (using `GH_PAT`) is permitted to push to `main`.
+- **Never** comment `/fast-forward` on a `next → main` PR until the `Semantic Release` check has passed on `next`. This guarantees correct tag ordering: the pre-release tag (`v1.0.0-next.X`) must exist before the stable release runs on `main`.
 - **Always** create the chunk tracking file before writing code
 - **Always** declare cross-package deps in both `package.json` (`workspace:*`) and `tsconfig.lib.json` references
 - **Always** pass `--unitTestRunner=vitest` when generating new packages
@@ -229,17 +229,17 @@ All work happens on short-lived branches. **Never push directly to `main` or `ne
 
 > **Branch model, merge strategies, and CI/Release triggers:**
 > ```
-> feature/* ──squash──► next ──rebase──► main
-> fix/*     ──squash──►       (Release)       (Release)
+> feature/* ──squash──► next ──fast-forward──► main
+> fix/*     ──squash──►       (Release)              (Release)
 > docs/*    ──squash──►
 >             ↑ CI on PR only
 > ```
 > - **`feature/*|fix/*|… → next`**: squash merge only. Each PR lands as a single clean commit on `next`.
-> - **`next → main`**: rebase merge only. `next` commits are replayed linearly onto `main`. This is enforced by the `main` branch ruleset.
+> - **`next → main`**: fast-forward only via `fast-forward.yml`. Comment `/fast-forward` on the `next → main` PR; the action verifies no divergence then pushes. No SHA rewriting. No merge commits.
 > - Merge commits are disabled repo-wide. Do not re-enable them.
 > - **CI (`ci.yml`)** runs on `pull_request` events only — not on pushes to `next` or `main`. The quality gate exists on the PR branch (with strict up-to-date branch enforcement), so running CI again after squash merge to `next` is redundant.
 > - **Release (`release.yml`)** runs on direct `push` to `next` or `main`. One push → one release attempt. There is no `workflow_run` intermediary that could cause double-firing.
-> - The `main` ruleset requires the `Semantic Release` check to have passed on `next` before a `next → main` PR can merge. This ensures pre-release tags exist before semantic-release promotes to stable.
+> - Wait for the `Semantic Release` check to pass on `next` before commenting `/fast-forward`. This ensures pre-release tags exist before semantic-release promotes to stable on `main`.
 
 ### Branch naming (Angular convention)
 
