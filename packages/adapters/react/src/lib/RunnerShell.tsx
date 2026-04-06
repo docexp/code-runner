@@ -39,9 +39,10 @@ export function RunnerShell({
 
   return (
     <div
-      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-500 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text] [color-scheme:dark]"
+      className="w-full rounded-lg bg-zinc-500 p-px font-mono text-sm [color-scheme:dark]"
       data-lang={lang}
     >
+    <div className="rounded-[7px] overflow-hidden bg-[--color-cheetah-base] text-[--color-cheetah-text]">
       {/* Header */}
       <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface]">
         <span className="text-xs font-semibold tracking-widest uppercase text-[--color-cheetah-muted]">
@@ -110,6 +111,7 @@ export function RunnerShell({
       >
         {output}
       </pre>
+    </div>
     </div>
   );
 }
