@@ -16,7 +16,7 @@
 /* Shiki read-only highlight overrides */
 .shiki-wrapper pre {
   background: transparent !important;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.625;
@@ -39,6 +39,8 @@
   display: inline-block;
   width: 1.5rem;
   margin-right: 0.75rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid color-mix(in srgb, var(--color-cheetah-border) 20%, transparent);
   text-align: right;
   color: var(--color-cheetah-border);
   opacity: 0.5;
