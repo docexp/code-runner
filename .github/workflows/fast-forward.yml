@@ -29,5 +29,8 @@ jobs:
         with:
           merge: true
           comment: "true"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          # Pass GH_PAT as the github_token INPUT so the action uses it for
+          # git credential setup. A push made with the built-in GITHUB_TOKEN
+          # (github-actions[bot]) is suppressed from triggering other workflows.
+          # Using a PAT here ensures the push to main fires release.yml.
+          github_token: ${{ secrets.GH_PAT }}
