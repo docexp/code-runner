@@ -1,0 +1,1 @@
+bunx nx run-many -t typecheck --output-style=stream
