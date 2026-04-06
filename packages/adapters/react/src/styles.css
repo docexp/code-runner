@@ -30,3 +30,14 @@
   font-family: inherit;
   line-height: inherit;
 }
+
+/* Shiki dual-theme: prefers-color-scheme switching */
+.shiki-wrapper span {
+  color: var(--shiki-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki-wrapper span {
+    color: var(--shiki-dark);
+  }
+}
