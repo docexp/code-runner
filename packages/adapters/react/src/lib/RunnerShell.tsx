@@ -43,7 +43,7 @@ export function RunnerShell({
       data-lang={lang}
     >
       {/* Header */}
-      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface] border-b border-zinc-500">
+      <div className="flex items-center gap-2 px-3 h-10 bg-[--color-cheetah-surface]">
         <span className="text-xs font-semibold tracking-widest uppercase text-[--color-cheetah-muted]">
           {title}
         </span>
@@ -66,6 +66,7 @@ export function RunnerShell({
           ▶&nbsp;Run
         </button>
       </div>
+      <div className="h-px bg-zinc-500" />
 
       {/* Editor */}
       <textarea
@@ -78,9 +79,10 @@ export function RunnerShell({
         autoCapitalize="off"
         className="w-full min-h-[160px] resize-y bg-[--color-cheetah-base] text-[--color-cheetah-text] text-sm font-mono leading-relaxed px-4 py-3 outline-none border-none focus:ring-0 caret-[--color-cheetah-accent]"
       />
+      <div className="h-px bg-zinc-500" />
 
       {/* Status bar */}
-      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] border-t border-b border-zinc-500 text-xs">
+      <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] text-xs">
         <span className="font-semibold uppercase tracking-widest text-[--color-cheetah-muted]">
           stdout
         </span>
@@ -98,6 +100,7 @@ export function RunnerShell({
           </a>
         )}
       </div>
+      <div className="h-px bg-zinc-500" />
 
       {/* Output */}
       <pre
