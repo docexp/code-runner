@@ -1,17 +1,23 @@
 /**
  * RunnerShell — shared React UI component for all code runners.
- * Renders the header, editor textarea, status bar, and output panel.
+ * Renders the header, editor textarea (rw) or Shiki highlight (r), status bar, and output panel.
  */
 import type { RunResult } from '@cheetah-coder/core';
 import { useRunner } from './useRunner.js';
 import type { RunState } from './useRunner.js';
+import { useShikiHighlight } from './useShikiHighlight.js';
+
+export type RunnerShellMode = 'r' | 'rw';
 
 export interface RunnerShellProps {
   lang: string;
   code?: string;
   title: string;
   playgroundUrl?: string;
+  /** Only used in rw mode. Ignored in r mode (height grows to fit content). */
   height?: string;
+  /** 'r' = read-only with Shiki syntax highlighting. 'rw' = editable textarea (default). */
+  mode?: RunnerShellMode;
   runner: (code: string, onStatus?: (msg: string) => void) => Promise<RunResult>;
 }
 
@@ -28,6 +34,7 @@ export function RunnerShell({
   title,
   playgroundUrl,
   height = '160px',
+  mode = 'rw',
   runner,
 }: RunnerShellProps) {
   const normalizedCode = code.trim();
@@ -35,11 +42,14 @@ export function RunnerShell({
   const { code: editorCode, setCode, output, runState, statusMessage, run, reset } =
     useRunner({ originalCode: normalizedCode, runner });
 
+  // Always call the hook; it short-circuits when code is empty or mode is rw
+  const shikiHtml = useShikiHighlight(mode === 'r' ? normalizedCode : '', lang);
+
   const stateCls = STATE_CLS[runState];
 
   return (
     <div
-      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-500 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text] [color-scheme:dark]"
+      className="w-full rounded-xs overflow-hidden ring-1 ring-zinc-500 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text] [color-scheme:dark]"
       data-lang={lang}
     >
       {/* Header */}
@@ -48,15 +58,17 @@ export function RunnerShell({
           {title}
         </span>
         <span className="flex-1" />
-        <button
-          type="button"
-          onClick={reset}
-          title="Reset to original code"
-          aria-label="Reset to original code"
-          className="h-7 w-7 flex items-center justify-center rounded text-[--color-cheetah-muted] hover:text-[--color-cheetah-text] hover:bg-white/5 transition-colors"
-        >
-          ↺
-        </button>
+        {mode === 'rw' && (
+          <button
+            type="button"
+            onClick={reset}
+            title="Reset to original code"
+            aria-label="Reset to original code"
+            className="h-7 w-7 flex items-center justify-center rounded text-[--color-cheetah-muted] hover:text-[--color-cheetah-text] hover:bg-white/5 transition-colors"
+          >
+            ↺
+          </button>
+        )}
         <button
           type="button"
           onClick={run}
@@ -67,17 +79,31 @@ export function RunnerShell({
         </button>
       </div>
 
-      {/* Editor */}
-      <textarea
-        style={{ height }}
-        value={editorCode}
-        onChange={e => setCode(e.target.value)}
-        spellCheck={false}
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        className="w-full min-h-[160px] resize-y bg-[--color-cheetah-base] text-[--color-cheetah-text] text-sm font-mono leading-relaxed px-4 py-3 outline-none border-none focus:ring-0 caret-[--color-cheetah-accent]"
-      />
+      {/* Editor / Highlight */}
+      {mode === 'r' ? (
+        shikiHtml ? (
+          <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: shikiHtml }}
+            className="shiki-wrapper overflow-x-auto"
+          />
+        ) : (
+          <pre className="px-4 py-3 text-sm font-mono leading-relaxed text-[--color-cheetah-muted] overflow-x-auto">
+            {normalizedCode}
+          </pre>
+        )
+      ) : (
+        <textarea
+          style={{ height }}
+          value={editorCode}
+          onChange={e => setCode(e.target.value)}
+          spellCheck={false}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          className="w-full min-h-[160px] resize-y bg-[--color-cheetah-base] text-[--color-cheetah-text] text-sm font-mono leading-relaxed px-4 py-3 outline-none border-none focus:ring-0 caret-[--color-cheetah-accent]"
+        />
+      )}
 
       {/* Status bar */}
       <div className="flex items-center gap-3 px-3 h-8 bg-[--color-cheetah-surface] border-t border-b border-zinc-500 text-xs">

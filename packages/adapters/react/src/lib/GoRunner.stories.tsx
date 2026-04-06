@@ -45,3 +45,16 @@ func main() {
 }`,
   },
 };
+
+export const ReadOnly: Story = {
+  args: {
+    mode: 'r',
+    code: `package main
+
+import "fmt"
+
+func main() {
+\tfmt.Println("Hello from Go!")
+}`,
+  },
+};

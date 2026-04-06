@@ -12,3 +12,54 @@
 }
 
 @source "./lib/**/*.tsx";
+
+/* Shiki read-only highlight overrides */
+.shiki-wrapper {
+  background: color-mix(in srgb, var(--color-cheetah-border) 2%, transparent);
+}
+
+.shiki-wrapper pre {
+  background: transparent !important;
+  padding: 1.25rem 1rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  font-family: inherit;
+  overflow-x: auto;
+}
+
+.shiki-wrapper code {
+  background: transparent !important;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  counter-reset: shiki-line;
+}
+
+/* Line numbers */
+.shiki-wrapper .line::before {
+  counter-increment: shiki-line;
+  content: counter(shiki-line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 0.75rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid color-mix(in srgb, var(--color-cheetah-border) 30%, transparent);
+  text-align: right;
+  color: var(--color-cheetah-border);
+  opacity: 0.5;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* Shiki dual-theme: prefers-color-scheme switching */
+.shiki-wrapper span {
+  color: var(--shiki-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki-wrapper span {
+    color: var(--shiki-dark);
+  }
+}
