@@ -54,7 +54,10 @@
     "prettier": "~3.6.2",
     "semantic-release": "^24.0.0",
     "storybook": "^8",
+<<<<<<< feat/009-tailwind-styling
     "tailwindcss": "^4.2.2",
+=======
+>>>>>>> next
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "vite": "^8.0.0",
