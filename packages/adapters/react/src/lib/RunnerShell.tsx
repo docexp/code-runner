@@ -39,7 +39,7 @@ export function RunnerShell({
 
   return (
     <div
-      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-700 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text]"
+      className="w-full rounded-lg overflow-hidden ring-1 ring-zinc-700 bg-[--color-cheetah-base] font-mono text-sm text-[--color-cheetah-text] [color-scheme:dark]"
       data-lang={lang}
     >
       {/* Header */}
