@@ -22,3 +22,20 @@ export const Variables: Story = {
     code: `fn main() {\n    let x: u32 = 42;\n    println!("The answer is {x}");\n}`,
   },
 };
+
+export const ReadOnly: Story = {
+  args: {
+    mode: 'r',
+    code: `fn fibonacci(n: u64) -> u64 {
+    match n {
+        0 => 0,
+        1 => 1,
+        _ => fibonacci(n - 1) + fibonacci(n - 2),
+    }
+}
+
+fn main() {
+    println!("{}", fibonacci(10));
+}`,
+  },
+};

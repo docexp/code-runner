@@ -22,3 +22,15 @@ export const Arithmetic: Story = {
     code: `const result = [1, 2, 3, 4, 5].reduce((a, b) => a + b, 0);\nconsole.log('Sum:', result);`,
   },
 };
+
+export const ReadOnly: Story = {
+  args: {
+    mode: 'r',
+    code: `function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));`,
+  },
+};

@@ -22,3 +22,15 @@ export const ListComprehension: Story = {
     code: `squares = [x**2 for x in range(1, 6)]\nprint(squares)`,
   },
 };
+
+export const ReadOnly: Story = {
+  args: {
+    mode: 'r',
+    code: `def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))`,
+  },
+};

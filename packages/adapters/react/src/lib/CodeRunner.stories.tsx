@@ -50,3 +50,29 @@ export const Java: Story = {
     code: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from Java!");\n    }\n}`,
   },
 };
+
+export const ReadOnlyGo: Story = {
+  args: {
+    lang: 'go',
+    title: 'Go',
+    mode: 'r',
+    code: `package main
+
+import "fmt"
+
+func main() {
+\tfmt.Println("Hello from Go!")
+}`,
+  },
+};
+
+export const ReadOnlyRust: Story = {
+  args: {
+    lang: 'rust',
+    title: 'Rust',
+    mode: 'r',
+    code: `fn main() {
+    println!("Hello from Rust!");
+}`,
+  },
+};
