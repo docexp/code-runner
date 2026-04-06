@@ -15,7 +15,7 @@
 
 /* Shiki read-only highlight overrides */
 .shiki-wrapper {
-  background: color-mix(in srgb, var(--color-cheetah-border) 6%, transparent);
+  background: color-mix(in srgb, var(--color-cheetah-border) 2%, transparent);
 }
 
 .shiki-wrapper pre {
