@@ -38,9 +38,9 @@
   content: counter(shiki-line);
   display: inline-block;
   width: 1.5rem;
-  margin-right: 0.75rem;
+  margin-right: 1.25rem;
   text-align: right;
-  color: #71717a;          /* zinc-500 — muted in both light & dark */
+  color: var(--color-cheetah-border);  /* zinc-500 — muted in both light & dark */
   font-variant-numeric: tabular-nums;
   user-select: none;
 }
