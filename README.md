@@ -7,12 +7,12 @@ A collection of independently-publishable TypeScript packages that run code in t
 | Package | Import path | Description |
 |---|---|---|
 | [`packages/core`](packages/core) | `@cheetah-coder/core` | Shared types: `RunResult`, `RunnerFn`, `Language`, `RUNNER_META` |
-| [`packages/js`](packages/js) | `@cheetah-coder/js` | JavaScript runner — executes code offline via `Function()` |
-| [`packages/python`](packages/python) | `@cheetah-coder/python` | Python runner — CPython 3 via Pyodide WebAssembly |
-| [`packages/go`](packages/go) | `@cheetah-coder/go` | Go runner — go.dev playground API |
-| [`packages/rust`](packages/rust) | `@cheetah-coder/rust` | Rust runner — play.rust-lang.org API |
-| [`packages/java`](packages/java) | `@cheetah-coder/java` | Java runner — Piston (emkc.org) API |
-| [`packages/react`](packages/react) | `@cheetah-coder/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
+| [`packages/runners/js`](packages/runners/js) | `@cheetah-coder/js` | JavaScript runner — executes code offline via `Function()` |
+| [`packages/runners/python`](packages/runners/python) | `@cheetah-coder/python` | Python runner — CPython 3 via Pyodide WebAssembly |
+| [`packages/runners/go`](packages/runners/go) | `@cheetah-coder/go` | Go runner — go.dev playground API |
+| [`packages/runners/rust`](packages/runners/rust) | `@cheetah-coder/rust` | Rust runner — play.rust-lang.org API |
+| [`packages/runners/java`](packages/runners/java) | `@cheetah-coder/java` | Java runner — Piston (emkc.org) API |
+| [`packages/adapters/react`](packages/adapters/react) | `@cheetah-coder/react` | React UI layer: `useRunner` hook, `RunnerShell`, language components, `CodeRunner` |
 
 ## Getting started
 
@@ -42,62 +42,30 @@ Requires [Bun](https://bun.sh) and Node 22.
 ```sh
 bun install                                           # install deps
 bunx nx run-many -t build --output-style=stream      # build all packages
+bunx nx run-many -t typecheck --output-style=stream  # type-check all
 bunx nx run-many -t test --output-style=stream       # unit tests
 bunx nx run react-e2e:e2e --output-style=stream      # Playwright e2e tests
-bunx nx run-many -t typecheck --output-style=stream  # type-check all
+```
+
+### Storybook
+
+The React adapter ships stories. A host app (`apps/storybooks`) composes them via Storybook composition.
+
+```sh
+# React child Storybook (port 6007)
+bunx nx run react:storybook --output-style=stream
+
+# Host composition Storybook (port 6006, depends on the child)
+bunx nx run storybooks:storybook --output-style=stream
+
+# Build static Storybooks
+bunx nx run react:build-storybook --output-style=stream
+bunx nx run storybooks:build-storybook --output-style=stream
 ```
 
 ## License
 
 MIT
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
-
-## Run tasks
-
-To build the library use:
-
-```sh
-npx nx build pkg1
-```
-
-To run any task with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
-```
-
-Pass `--dry-run` to see what would happen without actually releasing the library.
-
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
-```
 
 You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
 
