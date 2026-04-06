@@ -1,0 +1,33 @@
+name: Fast Forward
+
+# Merges a next → main PR by fast-forwarding main to the current next tip.
+# Triggered by a /fast-forward comment on a pull request.
+#
+# Prerequisites before running /fast-forward on a next → main PR:
+#   1. The Semantic Release check must have passed on next (pre-release tag exists).
+#   2. All CI checks on the PR branch must be green.
+#
+# The action verifies that main is directly behind next (true fast-forward is
+# possible) and then does a `git push` — no SHA rewriting, no merge commits.
+# The resulting push to main fires release.yml → stable semantic-release.
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fast-forward:
+    # Only run on pull request comments starting with /fast-forward
+    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/fast-forward') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sequoia-pgp/fast-forward@v1
+        with:
+          merge: true
+          comment: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
