@@ -1,3 +1,4 @@
+import './styles.css';
 export { useRunner } from './lib/useRunner.js';
 export type { UseRunnerOptions, UseRunnerReturn, RunState } from './lib/useRunner.js';
 export { RunnerShell } from './lib/RunnerShell.js';

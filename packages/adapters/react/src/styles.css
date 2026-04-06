@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cheetah-base:    #09090b;
+  --color-cheetah-surface: #18181b;
+  --color-cheetah-border:  #71717a;   /* zinc-500 */
+  --color-cheetah-muted:   #a1a1aa;
+  --color-cheetah-text:    #f4f4f5;
+  --color-cheetah-accent:  #10b981;
+  --color-cheetah-ok:      #34d399;
+  --color-cheetah-err:     #f87171;
+}
+
+@source "./lib/**/*.tsx";

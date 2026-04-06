@@ -24,7 +24,7 @@ export function CodeRunner({ lang, ...rest }: CodeRunnerProps) {
 
   if (!Runner) {
     return (
-      <pre style={{ color: 'red', padding: '0.5rem', background: '#1a0000' }}>
+      <pre className="w-full rounded-lg ring-1 ring-white/10 bg-[--color-cheetah-base] text-[--color-cheetah-err] font-mono text-sm px-4 py-3">
         {`No runner configured for language: "${lang}".\nSupported: javascript, python, go, rust, java`}
       </pre>
     );
