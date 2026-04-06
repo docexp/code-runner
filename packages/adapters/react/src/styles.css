@@ -29,6 +29,20 @@
   font-size: inherit;
   font-family: inherit;
   line-height: inherit;
+  counter-reset: shiki-line;
+}
+
+/* Line numbers */
+.shiki-wrapper .line::before {
+  counter-increment: shiki-line;
+  content: counter(shiki-line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: #71717a;          /* zinc-500 — muted in both light & dark */
+  font-variant-numeric: tabular-nums;
+  user-select: none;
 }
 
 /* Shiki dual-theme: prefers-color-scheme switching */
