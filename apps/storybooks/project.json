@@ -1,0 +1,10 @@
+{
+  "targets": {
+    "storybook": {
+      "options": {
+        "port": 6006
+      },
+      "dependsOn": ["react:storybook"]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 id: "007"
 title: "Storybook Composition — multi-framework component preview"
-status: "draft"
+status: "approved"
 created: "2026-04-06"
 updated: "2026-04-06"
 ---

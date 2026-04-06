@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Welcome" />
+
+# Cheetah Coder — Storybook Composition Hub
+
+This is the **host Storybook** that composes component previews from all framework adapters in the `code-runner` monorepo into a single browser UI.
+
+## How it works
+
+Each framework adapter (`@cheetah-coder/react`, `@cheetah-coder/vue`, etc.) runs its own Storybook child process. This host uses Storybook **Composition** (`refs`) to surface all their stories in one sidebar.
+
+```
+apps/storybooks (host) ─── http://localhost:6006
+    └── React            ── http://localhost:6007   packages/adapters/react
+    └── Vue (future)     ── http://localhost:6008   packages/adapters/vue
+    └── Angular (future) ── http://localhost:6009   packages/adapters/angular
+```
+
+## Running locally
+
+Start the React child and the host together:
+
+```bash
+# Each in its own terminal, or use run-many:
+bunx nx run react:storybook          # → http://localhost:6007
+bunx nx run storybooks:storybook     # → http://localhost:6006
+```
+
+## Adding a new framework adapter
+
+1. Add a `.storybook/main.ts` to `packages/adapters/{framework}/` using `@storybook/{framework}-vite` as the framework.
+2. Add a `project.json` with a port override (6008, 6009, …).
+3. In `apps/storybooks/.storybook/main.ts`, add one entry to the `refs` block inside both the `DEVELOPMENT` branch and the static-build return:
+   ```ts
+   vue: { title: 'Vue', url: 'http://localhost:6008' }
+   ```
+4. In `apps/storybooks/project.json`, add the new child to `dependsOn`:
+   ```json
+   "dependsOn": ["react:storybook", "vue:storybook"]
+   ```
+
+That's it — no other monorepo-level changes needed.
